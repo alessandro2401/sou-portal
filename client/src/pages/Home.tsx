@@ -15,7 +15,7 @@ export default function Home() {
             Projeto em Andamento
           </div>
           <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground mb-4">
-            Portal de Gestão SMMB
+            SOU - Sistema de Organização Unificada
           </h1>
           <p className="text-lg text-muted-foreground mb-8 max-w-2xl">
             Central unificada de documentação, contratos e acompanhamento técnico do desenvolvimento do CRM da Administradora Mutual.

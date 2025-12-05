@@ -59,7 +59,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
         <div className="h-16 flex items-center px-6 border-b border-border">
           <div className="flex items-center gap-2 font-bold text-lg text-primary">
             <ShieldCheck className="h-6 w-6" />
-            <span>SMMB Portal</span>
+            <span>SOU Portal</span>
           </div>
         </div>
         
@@ -86,7 +86,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
       <div className="md:hidden fixed top-0 left-0 right-0 h-16 border-b border-border bg-background z-40 flex items-center justify-between px-4">
         <div className="flex items-center gap-2 font-bold text-lg text-primary">
           <ShieldCheck className="h-6 w-6" />
-          <span>SMMB Portal</span>
+          <span>SOU Portal</span>
         </div>
         <Sheet open={isMobileOpen} onOpenChange={setIsMobileOpen}>
           <SheetTrigger asChild>
@@ -98,7 +98,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
             <div className="h-16 flex items-center px-6 border-b border-border">
               <div className="flex items-center gap-2 font-bold text-lg text-primary">
                 <ShieldCheck className="h-6 w-6" />
-                <span>SMMB Portal</span>
+                <span>SOU Portal</span>
               </div>
             </div>
             <div className="flex-1 overflow-y-auto py-6 px-3 space-y-1">
