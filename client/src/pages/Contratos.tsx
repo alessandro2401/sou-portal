@@ -8,6 +8,15 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 // Mock data for documents - in a real app this would come from an API or file system scan
 const documents = [
   {
+    id: "contrato-original-why",
+    title: "Contrato Original - Why Consulting (v1)",
+    description: "Primeira versão do contrato enviada pela contratada para análise e comparação.",
+    date: "Original",
+    status: "Referência",
+    type: "Original",
+    path: "/documents/Contrato_Original_Why_Consulting.md"
+  },
+  {
     id: "contrato-consolidado",
     title: "Contrato Mestre de Desenvolvimento",
     description: "Documento principal consolidado com todas as cláusulas e proteções jurídicas.",
