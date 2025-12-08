@@ -155,14 +155,22 @@ const documents = [
 export default function Contratos() {
   const [selectedDoc, setSelectedDoc] = useState<string | null>(null);
   const [docContent, setDocContent] = useState<string>("");
+  const [docPath, setDocPath] = useState<string>("");
   const [currentVersions, setCurrentVersions] = useState<Version[]>([]);
   const [activeVersionId, setActiveVersionId] = useState<string>("");
 
   const loadDocument = async (docId: string, path: string) => {
     try {
-      const response = await fetch(path);
-      const text = await response.text();
-      setDocContent(text);
+      setDocPath(path);
+      
+      // Only fetch text content for non-PDF files
+      if (!path.toLowerCase().endsWith('.pdf')) {
+        const response = await fetch(path);
+        const text = await response.text();
+        setDocContent(text);
+      } else {
+        setDocContent(""); // Clear content for PDFs
+      }
       
       // Load versions for this doc
       const versions = mockVersions[docId] || mockVersions["default"];
@@ -258,9 +266,19 @@ export default function Contratos() {
                       {/* Document Content */}
                       <div className="flex-1 overflow-y-auto p-8 bg-muted/30">
                         <div className="max-w-5xl mx-auto bg-background border border-border shadow-sm p-8 min-h-full">
-                          <div className="prose prose-sm max-w-none dark:prose-invert">
-                            <Streamdown>{docContent}</Streamdown>
-                          </div>
+                          {docPath.toLowerCase().endsWith('.pdf') ? (
+                            // PDF Viewer
+                            <iframe
+                              src={docPath}
+                              className="w-full h-full min-h-[600px] border-0"
+                              title="PDF Viewer"
+                            />
+                          ) : (
+                            // Markdown Viewer
+                            <div className="prose prose-sm max-w-none dark:prose-invert">
+                              <Streamdown>{docContent}</Streamdown>
+                            </div>
+                          )}
                         </div>
                       </div>
 
