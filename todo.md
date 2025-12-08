@@ -9,8 +9,17 @@
 
 ## Reorganização de Cards - Contratos (08/12/2025)
 
-- [ ] Identificar arquivo de dados dos contratos
-- [ ] Reorganizar ordem dos cards: Contrato Original v1 → Contrato v2 + Anexo 1 → Cronograma Macro
-- [ ] Testar reorganização no navegador
-- [ ] Fazer commit e push das alterações
+- [x] Identificar arquivo de dados dos contratos
+- [x] Reorganizar ordem dos cards: Contrato Original v1 → Contrato v2 + Anexo 1 → Cronograma Macro
+- [x] Testar reorganização no navegador
+- [x] Fazer commit e push das alterações
+- [x] Validar em produção
+
+## Implementação de Download de Documentos (08/12/2025)
+
+- [ ] Verificar implementação atual dos botões de download
+- [ ] Implementar download funcional para arquivos PDF
+- [ ] Implementar download funcional para arquivos Markdown
+- [ ] Garantir nomes de arquivo apropriados no download
+- [ ] Testar downloads de todos os tipos de documentos
 - [ ] Validar em produção

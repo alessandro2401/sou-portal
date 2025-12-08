@@ -190,6 +190,34 @@ export default function Contratos() {
     console.log(`Switching to version ${version.version}`);
   };
 
+  const handleDownload = async (doc: typeof documents[0]) => {
+    try {
+      const response = await fetch(doc.path);
+      const blob = await response.blob();
+      
+      // Create download link
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      
+      // Set filename based on document type
+      const extension = doc.path.toLowerCase().endsWith('.pdf') ? 'pdf' : 'md';
+      const filename = `${doc.title.replace(/[^a-z0-9]/gi, '_')}.${extension}`;
+      link.download = filename;
+      
+      // Trigger download
+      document.body.appendChild(link);
+      link.click();
+      
+      // Cleanup
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error('Error downloading document:', error);
+      alert('Erro ao baixar o documento. Por favor, tente novamente.');
+    }
+  };
+
   return (
     <div className="space-y-8">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
@@ -296,7 +324,10 @@ export default function Contratos() {
                       </div>
                       <div className="flex gap-2">
                         <Button variant="outline" className="rounded-none">Fechar</Button>
-                        <Button className="rounded-none bg-primary">
+                        <Button 
+                          className="rounded-none bg-primary"
+                          onClick={() => handleDownload(doc)}
+                        >
                           <Download className="mr-2 h-4 w-4" />
                           Baixar Versão Atual
                         </Button>
@@ -304,7 +335,13 @@ export default function Contratos() {
                     </div>
                   </DialogContent>
                 </Dialog>
-                <Button variant="ghost" size="icon" className="rounded-none">
+                <Button 
+                  variant="ghost" 
+                  size="icon" 
+                  className="rounded-none"
+                  onClick={() => handleDownload(doc)}
+                  title="Baixar documento"
+                >
                   <Download className="h-4 w-4" />
                 </Button>
               </div>
