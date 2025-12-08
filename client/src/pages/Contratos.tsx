@@ -257,7 +257,7 @@ export default function Contratos() {
                     <div className="flex flex-1 overflow-hidden">
                       {/* Document Content */}
                       <div className="flex-1 overflow-y-auto p-8 bg-muted/30">
-                        <div className="max-w-3xl mx-auto bg-background border border-border shadow-sm p-8 min-h-full">
+                        <div className="max-w-5xl mx-auto bg-background border border-border shadow-sm p-8 min-h-full">
                           <div className="prose prose-sm max-w-none dark:prose-invert">
                             <Streamdown>{docContent}</Streamdown>
                           </div>
