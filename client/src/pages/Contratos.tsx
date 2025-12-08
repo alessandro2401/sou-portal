@@ -34,6 +34,24 @@ const documents = [
     path: "/documents/Contrato_Original_Why_Consulting.md"
   },
   {
+    id: "contrato-why-v2",
+    title: "Contrato Why Consulting (v2) + Anexo 1",
+    description: "Nova versão do contrato com cronograma macro de entregáveis detalhado (12 meses).",
+    date: "08/12/2025",
+    status: "Em Análise",
+    type: "Original",
+    path: "/documents/Contrato_Why_Consulting_v2.pdf"
+  },
+  {
+    id: "cronograma-anexo1-v2",
+    title: "Cronograma Macro - Anexo 1 (Contrato v2)",
+    description: "Cronograma detalhado de 12 meses com 5 fases principais e marcos de validação.",
+    date: "08/12/2025",
+    status: "Aprovado",
+    type: "Anexo",
+    path: "/documents/Cronograma_Why_Consulting_v2_Anexo1.md"
+  },
+  {
     id: "contrato-consolidado",
     title: "Contrato Mestre de Desenvolvimento",
     description: "Documento principal consolidado com todas as cláusulas e proteções jurídicas.",
@@ -115,15 +133,6 @@ const documents = [
     path: "/documents/Anexo_H_PI_Titularidade.md"
   },
   {
-    id: "contrato-why-v2",
-    title: "Contrato Why Consulting (v2) + Anexo 1",
-    description: "Nova versão do contrato com cronograma macro de entregáveis detalhado (12 meses).",
-    date: "08/12/2025",
-    status: "Em Análise",
-    type: "Original",
-    path: "/documents/Contrato_Why_Consulting_v2.pdf"
-  },
-  {
     id: "analise-juridica-why-v2",
     title: "Relatório de Análise Jurídica - Contrato v2",
     description: "Análise executiva com identificação de 5 cláusulas críticas e recomendações prioritárias.",
@@ -140,15 +149,6 @@ const documents = [
     status: "Aprovado",
     type: "Anexo",
     path: "/documents/analise_contrato_why_consulting.md"
-  },
-  {
-    id: "cronograma-anexo1-v2",
-    title: "Cronograma Macro - Anexo 1 (Contrato v2)",
-    description: "Cronograma detalhado de 12 meses com 5 fases principais e marcos de validação.",
-    date: "08/12/2025",
-    status: "Aprovado",
-    type: "Anexo",
-    path: "/documents/Cronograma_Why_Consulting_v2_Anexo1.md"
   }
 ];
 
