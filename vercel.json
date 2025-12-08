@@ -2,6 +2,21 @@
   "framework": "vite",
   "buildCommand": "npm run build",
   "outputDirectory": "dist/public",
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, s-maxage=0, must-revalidate"
+        },
+        {
+          "key": "X-Cache-Purge",
+          "value": "2025-12-08"
+        }
+      ]
+    }
+  ],
   "rewrites": [
     {
       "source": "/(.*)",
