@@ -9,10 +9,13 @@ import {
   LogOut,
   Menu,
   X,
-  ShieldCheck
+  ShieldCheck,
+  BookOpen,
+  Palette
 } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { LogoText } from "@/components/Logo";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 interface DashboardLayoutProps {
@@ -28,26 +31,42 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
     { name: "Contratos", href: "/contratos", icon: FileText },
     { name: "Cronogramas", href: "/cronogramas", icon: Calendar },
     { name: "Diagramas", href: "/diagramas", icon: Network },
+    { name: "Documentação", href: "/documentacao", icon: BookOpen },
     { name: "Anexos Técnicos", href: "/anexos", icon: ShieldCheck },
+    { name: "Manual da Marca", href: "https://sou-brand-manual-gnwttqdqn-alessandro-s-projects-4e3366f0.vercel.app/", icon: Palette, external: true },
   ];
 
   const NavItem = ({ item, mobile = false }: { item: typeof navigation[0], mobile?: boolean }) => {
     const isActive = location === item.href;
+    const isExternal = 'external' in item && item.external;
+    
+    const content = (
+      <div
+        className={cn(
+          "flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-none transition-colors cursor-pointer",
+          isActive
+            ? "bg-sidebar-accent text-sidebar-accent-foreground border-r-2 border-primary"
+            : "text-sidebar-foreground hover:bg-sidebar-accent/50 hover:text-sidebar-accent-foreground",
+          mobile && "w-full"
+        )}
+        onClick={() => mobile && setIsMobileOpen(false)}
+      >
+        <item.icon className="h-4 w-4" />
+        {item.name}
+      </div>
+    );
+    
+    if (isExternal) {
+      return (
+        <a href={item.href} target="_blank" rel="noopener noreferrer">
+          {content}
+        </a>
+      );
+    }
+    
     return (
       <Link href={item.href}>
-        <div
-          className={cn(
-            "flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-none transition-colors cursor-pointer",
-            isActive
-              ? "bg-sidebar-accent text-sidebar-accent-foreground border-r-2 border-primary"
-              : "text-sidebar-foreground hover:bg-sidebar-accent/50 hover:text-sidebar-accent-foreground",
-            mobile && "w-full"
-          )}
-          onClick={() => mobile && setIsMobileOpen(false)}
-        >
-          <item.icon className="h-4 w-4" />
-          {item.name}
-        </div>
+        {content}
       </Link>
     );
   };
@@ -57,10 +76,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
       {/* Desktop Sidebar */}
       <aside className="hidden md:flex w-64 flex-col border-r border-border bg-sidebar fixed h-full z-30">
         <div className="h-16 flex items-center px-6 border-b border-border">
-          <div className="flex items-center gap-2 font-bold text-lg text-primary">
-            <ShieldCheck className="h-6 w-6" />
-            <span>SOU Portal</span>
-          </div>
+          <LogoText />
         </div>
         
         <div className="flex-1 overflow-y-auto py-6 px-3 space-y-1">
@@ -84,10 +100,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
 
       {/* Mobile Header */}
       <div className="md:hidden fixed top-0 left-0 right-0 h-16 border-b border-border bg-background z-40 flex items-center justify-between px-4">
-        <div className="flex items-center gap-2 font-bold text-lg text-primary">
-          <ShieldCheck className="h-6 w-6" />
-          <span>SOU Portal</span>
-        </div>
+        <LogoText />
         <Sheet open={isMobileOpen} onOpenChange={setIsMobileOpen}>
           <SheetTrigger asChild>
             <Button variant="ghost" size="icon">
@@ -96,10 +109,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
           </SheetTrigger>
           <SheetContent side="left" className="w-64 p-0">
             <div className="h-16 flex items-center px-6 border-b border-border">
-              <div className="flex items-center gap-2 font-bold text-lg text-primary">
-                <ShieldCheck className="h-6 w-6" />
-                <span>SOU Portal</span>
-              </div>
+              <LogoText />
             </div>
             <div className="flex-1 overflow-y-auto py-6 px-3 space-y-1">
               {navigation.map((item) => (
