@@ -183,4 +183,11 @@
 
 - [x] Alterar URL de https://sou.seg.br para https://www.sou.inf.br
 - [x] Testar no ambiente de desenvolvimento
+- [x] Fazer deploy para produção
+
+## Alterar URL para Vercel temporariamente (12/12/2025)
+
+- [x] Alterar URL de https://www.sou.inf.br para https://sou-login-mockup.vercel.app/
+- [x] Testar no ambiente de desenvolvimento
 - [ ] Fazer deploy para produção
+- [ ] Nota: Voltar para www.sou.inf.br quando domínio estiver configurado com SSL
