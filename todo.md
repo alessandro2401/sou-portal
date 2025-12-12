@@ -177,4 +177,10 @@
 - [x] Configurar link para https://sou.seg.br
 - [x] Escolher ícone apropriado (LogIn ou similar)
 - [x] Testar no ambiente de desenvolvimento
+- [x] Fazer deploy para produção
+
+## Corrigir URL do Menu "Modelo de Entrada do Sistema" (12/12/2025)
+
+- [x] Alterar URL de https://sou.seg.br para https://www.sou.inf.br
+- [x] Testar no ambiente de desenvolvimento
 - [ ] Fazer deploy para produção

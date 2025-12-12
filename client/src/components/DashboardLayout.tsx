@@ -35,7 +35,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
     { name: "Documentação", href: "/documentacao", icon: BookOpen },
     { name: "Anexos Técnicos", href: "/anexos", icon: ShieldCheck },
     { name: "Manual da Marca", href: "https://sou-brand-manual-gnwttqdqn-alessandro-s-projects-4e3366f0.vercel.app/", icon: Palette, external: true },
-    { name: "Modelo de Entrada do Sistema", href: "https://sou.seg.br", icon: LogIn, external: true },
+    { name: "Modelo de Entrada do Sistema", href: "https://www.sou.inf.br", icon: LogIn, external: true },
   ];
 
   const NavItem = ({ item, mobile = false }: { item: typeof navigation[0], mobile?: boolean }) => {
