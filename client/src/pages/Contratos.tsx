@@ -62,11 +62,11 @@ const documents = [
   },
   {
     id: "contrato-consolidado",
-    title: "Contrato Mestre de Desenvolvimento",
+    title: "Contrato sem uso",
     description: "Documento principal consolidado com todas as cláusulas e proteções jurídicas.",
-    date: "05/12/2025",
+    date: "15/10/2025",
     status: "Vigente",
-    type: "Principal",
+    type: "Sugestão",
     path: "/documents/Contrato_Consolidado_Final.md"
   },
   {
