@@ -25,6 +25,15 @@ const mockVersions: Record<string, Version[]> = {
 // Mock data for documents - in a real app this would come from an API or file system scan
 const documents = [
   {
+    id: "primeiro-contrato-why",
+    title: "Primeiro Contrato Assinado com a Why",
+    description: "Contrato de Assessment assinado digitalmente via D4Sign - primeiro acordo formal entre Grupo MMB e Why Consulting.",
+    date: "12/12/2025",
+    status: "Assinado",
+    type: "Contrato",
+    path: "/primeiro-contrato-why-consulting.pdf"
+  },
+  {
     id: "historico-relacao",
     title: "Histórico da Relação - Grupo MMB e Why Consulting",
     description: "Relatório completo apresentando a história da parceria, projetos realizados (Assessment e Data Warehouse) e status atual.",
