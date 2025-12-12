@@ -55,9 +55,9 @@ const documents = [
     id: "contrato-original-why",
     title: "Contrato Original - Why Consulting (v1)",
     description: "Primeira versão do contrato enviada pela contratada para análise e comparação.",
-    date: "Original",
+    date: "01/11/2025",
     status: "Referência",
-    type: "Original",
+    type: "Primeira Versão (sem uso)",
     path: "/documents/Contrato_Original_Why_Consulting.md"
   },
   {
