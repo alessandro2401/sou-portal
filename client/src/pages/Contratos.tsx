@@ -72,7 +72,7 @@ const documents = [
   {
     id: "anexo-a",
     title: "Anexo A - Especificações Técnicas (SOW)",
-    description: "Detalhamento do escopo, módulos e requisitos funcionais.",
+    description: "Sugestão criada pelo Grupo MMB. Detalhamento do escopo, módulos e requisitos funcionais. Documento não enviado pela Why Consulting.",
     date: "05/12/2025",
     status: "Aprovado",
     type: "Anexo",
@@ -81,7 +81,7 @@ const documents = [
   {
     id: "anexo-b",
     title: "Anexo B - Integrações",
-    description: "Especificações de APIs e interoperabilidade com sistemas terceiros.",
+    description: "Sugestão criada pelo Grupo MMB. Especificações de APIs e interoperabilidade com sistemas terceiros. Documento não enviado pela Why Consulting.",
     date: "05/12/2025",
     status: "Aprovado",
     type: "Anexo",
@@ -90,7 +90,7 @@ const documents = [
   {
     id: "anexo-c",
     title: "Anexo C - Segurança e SDLC",
-    description: "Requisitos de segurança da informação e ciclo de desenvolvimento seguro.",
+    description: "Sugestão criada pelo Grupo MMB. Requisitos de segurança da informação e ciclo de desenvolvimento seguro. Documento não enviado pela Why Consulting.",
     date: "05/12/2025",
     status: "Aprovado",
     type: "Anexo",
@@ -99,7 +99,7 @@ const documents = [
   {
     id: "anexo-d",
     title: "Anexo D - SLA e Créditos",
-    description: "Acordo de Nível de Serviço e tabela de penalidades.",
+    description: "Sugestão criada pelo Grupo MMB. Acordo de Nível de Serviço e tabela de penalidades. Documento não enviado pela Why Consulting.",
     date: "05/12/2025",
     status: "Aprovado",
     type: "Anexo",
@@ -108,7 +108,7 @@ const documents = [
   {
     id: "anexo-e",
     title: "Anexo E - Preços e Pagamento",
-    description: "Tabela de valores, parcelas e condições comerciais.",
+    description: "Sugestão criada pelo Grupo MMB. Tabela de valores, parcelas e condições comerciais. Documento não enviado pela Why Consulting.",
     date: "05/12/2025",
     status: "Aprovado",
     type: "Anexo",
@@ -117,7 +117,7 @@ const documents = [
   {
     id: "anexo-f",
     title: "Anexo F - Handover Checklist",
-    description: "Lista de verificação para transição e entrega do projeto.",
+    description: "Sugestão criada pelo Grupo MMB. Lista de verificação para transição e entrega do projeto. Documento não enviado pela Why Consulting.",
     date: "05/12/2025",
     status: "Pendente",
     type: "Anexo",
@@ -126,7 +126,7 @@ const documents = [
   {
     id: "anexo-g",
     title: "Anexo G - Não-Concorrência",
-    description: "Lista de segmentos e concorrentes restritos.",
+    description: "Sugestão criada pelo Grupo MMB. Lista de segmentos e concorrentes restritos. Documento não enviado pela Why Consulting.",
     date: "05/12/2025",
     status: "Aprovado",
     type: "Anexo",
@@ -135,7 +135,7 @@ const documents = [
   {
     id: "anexo-h",
     title: "Anexo H - Propriedade Intelectual",
-    description: "Procedimentos de registro e titularidade no INPI.",
+    description: "Sugestão criada pelo Grupo MMB. Procedimentos de registro e titularidade no INPI. Documento não enviado pela Why Consulting.",
     date: "05/12/2025",
     status: "Aprovado",
     type: "Anexo",
