@@ -17,9 +17,10 @@ export default function Home() {
           <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground mb-4">
             SOU - Sistema de Organização Unificada
           </h1>
-          <p className="text-lg text-muted-foreground mb-8 max-w-2xl">
-            Central unificada de documentação, contratos e acompanhamento técnico do desenvolvimento do CRM da Administradora Mutual.
-          </p>
+          <div className="flex items-center gap-3 mb-8">
+            <span className="text-lg text-muted-foreground">Administrado por:</span>
+            <img src="/grupo-mmb-logo.png" alt="Grupo MMB" className="h-8 w-auto" />
+          </div>
           <div className="flex flex-wrap gap-4">
             <Link href="/contratos">
               <Button size="lg" className="rounded-none bg-primary hover:bg-primary/90">

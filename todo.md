@@ -189,5 +189,12 @@
 
 - [x] Alterar URL de https://www.sou.inf.br para https://sou-login-mockup.vercel.app/
 - [x] Testar no ambiente de desenvolvimento
-- [ ] Fazer deploy para produção
+- [x] Fazer deploy para produção
 - [ ] Nota: Voltar para www.sou.inf.br quando domínio estiver configurado com SSL
+
+## Alterar Subtítulo da Home com Logo Grupo MMB (12/12/2025)
+
+- [x] Copiar logo GRUPO_MMB_QUAD_BRANCA.png para client/public
+- [x] Modificar Home.tsx para substituir frase por "Administrado por:" + logo
+- [x] Testar no ambiente de desenvolvimento
+- [ ] Fazer deploy para produção
