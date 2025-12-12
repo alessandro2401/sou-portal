@@ -152,4 +152,21 @@
 - [x] Identificar todos os cards com status "Vigente" ou "Aprovado"
 - [x] Alterar status para "Sem Valor"
 - [x] Testar no ambiente de desenvolvimento
+- [x] Fazer deploy para produção
+
+## Corrigir Status "Assassinado" para "Assinado" (12/12/2025)
+
+- [ ] Identificar erro de digitação no status do primeiro contrato
+- [ ] Corrigir de "Assassinado" para "Assinado"
+- [ ] Testar correção no ambiente de desenvolvimento
 - [ ] Fazer deploy para produção
+
+## Revisão e Sincronização Completa Dev → Produção (12/12/2025)
+
+- [x] Comparar página /documentacao entre desenvolvimento e produção
+- [x] Identificar todos os arquivos e conteúdos faltantes em produção
+- [x] Copiar arquivos do projeto Manus para repositório GitHub
+- [ ] Revisar e organizar estrutura de arquivos
+- [ ] Fazer commit e push de todas as alterações
+- [ ] Validar deploy em produção
+- [ ] Confirmar que ambos os sites estão idênticos

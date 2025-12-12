@@ -11,6 +11,7 @@ import Home from "./pages/Home";
 import Contratos from "./pages/Contratos";
 import Cronogramas from "./pages/Cronogramas";
 import Diagramas from "./pages/Diagramas";
+import Documentation from "./pages/Documentation";
 
 function Router() {
   return (
@@ -20,6 +21,7 @@ function Router() {
         <Route path="/contratos" component={Contratos} />
         <Route path="/cronogramas" component={Cronogramas} />
         <Route path="/diagramas" component={Diagramas} />
+        <Route path="/documentacao" component={Documentation} />
         <Route path="/anexos" component={Contratos} /> {/* Reusing Contratos page for now */}
         <Route path="/404" component={NotFound} />
         <Route component={NotFound} />
