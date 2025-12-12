@@ -65,7 +65,7 @@ const documents = [
     title: "Contrato sem uso",
     description: "Documento principal consolidado com todas as cláusulas e proteções jurídicas.",
     date: "15/10/2025",
-    status: "Vigente",
+    status: "Sem Valor",
     type: "Sugestão",
     path: "/documents/Contrato_Consolidado_Final.md"
   },
@@ -74,7 +74,7 @@ const documents = [
     title: "Anexo A - Especificações Técnicas (SOW)",
     description: "Sugestão criada pelo Grupo MMB. Detalhamento do escopo, módulos e requisitos funcionais. Documento não enviado pela Why Consulting.",
     date: "05/12/2025",
-    status: "Aprovado",
+    status: "Sem Valor",
     type: "Anexo",
     path: "/documents/Anexo_A_SOW_Especificacoes.md"
   },
@@ -83,7 +83,7 @@ const documents = [
     title: "Anexo B - Integrações",
     description: "Sugestão criada pelo Grupo MMB. Especificações de APIs e interoperabilidade com sistemas terceiros. Documento não enviado pela Why Consulting.",
     date: "05/12/2025",
-    status: "Aprovado",
+    status: "Sem Valor",
     type: "Anexo",
     path: "/documents/Anexo_B_Integracoes.md"
   },
@@ -92,7 +92,7 @@ const documents = [
     title: "Anexo C - Segurança e SDLC",
     description: "Sugestão criada pelo Grupo MMB. Requisitos de segurança da informação e ciclo de desenvolvimento seguro. Documento não enviado pela Why Consulting.",
     date: "05/12/2025",
-    status: "Aprovado",
+    status: "Sem Valor",
     type: "Anexo",
     path: "/documents/Anexo_C_Seguranca_SDLC.md"
   },
@@ -101,7 +101,7 @@ const documents = [
     title: "Anexo D - SLA e Créditos",
     description: "Sugestão criada pelo Grupo MMB. Acordo de Nível de Serviço e tabela de penalidades. Documento não enviado pela Why Consulting.",
     date: "05/12/2025",
-    status: "Aprovado",
+    status: "Sem Valor",
     type: "Anexo",
     path: "/documents/Anexo_D_Creditos_SLA.md"
   },
@@ -110,7 +110,7 @@ const documents = [
     title: "Anexo E - Preços e Pagamento",
     description: "Sugestão criada pelo Grupo MMB. Tabela de valores, parcelas e condições comerciais. Documento não enviado pela Why Consulting.",
     date: "05/12/2025",
-    status: "Aprovado",
+    status: "Sem Valor",
     type: "Anexo",
     path: "/documents/Anexo_E_Precos_Pagamento.md"
   },
@@ -128,7 +128,7 @@ const documents = [
     title: "Anexo G - Não-Concorrência",
     description: "Sugestão criada pelo Grupo MMB. Lista de segmentos e concorrentes restritos. Documento não enviado pela Why Consulting.",
     date: "05/12/2025",
-    status: "Aprovado",
+    status: "Sem Valor",
     type: "Anexo",
     path: "/documents/Anexo_G_Segmentos_Concorrentes.md"
   },
@@ -137,7 +137,7 @@ const documents = [
     title: "Anexo H - Propriedade Intelectual",
     description: "Sugestão criada pelo Grupo MMB. Procedimentos de registro e titularidade no INPI. Documento não enviado pela Why Consulting.",
     date: "05/12/2025",
-    status: "Aprovado",
+    status: "Sem Valor",
     type: "Anexo",
     path: "/documents/Anexo_H_PI_Titularidade.md"
   },

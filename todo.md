@@ -110,3 +110,46 @@
 - [ ] Push para GitHub
 - [ ] Validar deploy automático no Vercel
 - [ ] Confirmar que sou.administradoramutual.com.br está atualizado
+
+## Adicionar Primeiro Contrato Assinado com a Why como Primeiro Card (12/12/2025)
+
+- [x] Copiar PDF do contrato para o projeto
+- [x] Atualizar página Contratos.tsx com novo card
+- [x] Reorganizar ordem dos cards (Primeiro Contrato → Histórico → demais)
+- [x] Testar no ambiente de desenvolvimento
+- [x] Fazer deploy para produção
+
+## Adicionar Contrato Why Consulting v2 + Anexo 1 (12/12/2025)
+
+- [x] Copiar PDF do contrato v2 para o projeto
+- [x] Adicionar card na página Contratos.tsx
+- [x] Posicionar após primeiro contrato assinado
+- [x] Testar no ambiente de desenvolvimento
+- [x] Fazer deploy para produção
+
+## Alterar Tipo do Card Contrato Original (12/12/2025)
+
+- [x] Modificar tipo de "Original" para "Primeira Versão (sem uso)"
+- [x] Testar no ambiente de desenvolvimento
+- [x] Fazer deploy para produção
+
+## Alterar Card Contrato Mestre de Desenvolvimento (12/12/2025)
+
+- [x] Modificar tipo de "Principal" para "Sugestão"
+- [x] Modificar título para "Contrato sem uso"
+- [x] Testar no ambiente de desenvolvimento
+- [x] Fazer deploy para produção
+
+## Atualizar Descrição dos Anexos A a H (12/12/2025)
+
+- [x] Modificar descrições para indicar que são sugestões do Grupo MMB
+- [x] Adicionar nota "não enviado pela Why Consulting"
+- [x] Testar no ambiente de desenvolvimento
+- [x] Fazer deploy para produção
+
+## Alterar Status Vigente/Aprovado para Sem Valor (12/12/2025)
+
+- [x] Identificar todos os cards com status "Vigente" ou "Aprovado"
+- [x] Alterar status para "Sem Valor"
+- [x] Testar no ambiente de desenvolvimento
+- [ ] Fazer deploy para produção
