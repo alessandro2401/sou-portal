@@ -34,6 +34,15 @@ const documents = [
     path: "/primeiro-contrato-why-consulting.pdf"
   },
   {
+    id: "contrato-why-v2",
+    title: "Contrato Why Consulting v2 + Anexo 1",
+    description: "Última versão do contrato enviada pela Why Consulting para análise e aprovação do Grupo MMB.",
+    date: "12/12/2025",
+    status: "Em Análise",
+    type: "Contrato",
+    path: "/contrato-why-v2-anexo1.pdf"
+  },
+  {
     id: "historico-relacao",
     title: "Histórico da Relação - Grupo MMB e Why Consulting",
     description: "Relatório completo apresentando a história da parceria, projetos realizados (Assessment e Data Warehouse) e status atual.",
