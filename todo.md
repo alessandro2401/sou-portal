@@ -166,7 +166,15 @@
 - [x] Comparar página /documentacao entre desenvolvimento e produção
 - [x] Identificar todos os arquivos e conteúdos faltantes em produção
 - [x] Copiar arquivos do projeto Manus para repositório GitHub
-- [ ] Revisar e organizar estrutura de arquivos
-- [ ] Fazer commit e push de todas as alterações
-- [ ] Validar deploy em produção
-- [ ] Confirmar que ambos os sites estão idênticos
+- [x] Revisar e organizar estrutura de arquivos
+- [x] Fazer commit e push de todas as alterações
+- [x] Validar deploy em produção
+- [x] Confirmar que ambos os sites estão idênticos
+
+## Adicionar Menu "Modelo de Entrada do Sistema" (12/12/2025)
+
+- [x] Adicionar item de menu após "Manual da Marca"
+- [x] Configurar link para https://sou.seg.br
+- [x] Escolher ícone apropriado (LogIn ou similar)
+- [x] Testar no ambiente de desenvolvimento
+- [ ] Fazer deploy para produção
