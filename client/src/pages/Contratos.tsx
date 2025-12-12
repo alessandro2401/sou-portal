@@ -25,6 +25,15 @@ const mockVersions: Record<string, Version[]> = {
 // Mock data for documents - in a real app this would come from an API or file system scan
 const documents = [
   {
+    id: "historico-relacao",
+    title: "Histórico da Relação - Grupo MMB e Why Consulting",
+    description: "Relatório completo apresentando a história da parceria, projetos realizados (Assessment e Data Warehouse) e status atual.",
+    date: "10/12/2025",
+    status: "Oficial",
+    type: "Relatório",
+    path: "/historico-grupo-mmb-why-consulting.pdf"
+  },
+  {
     id: "contrato-original-why",
     title: "Contrato Original - Why Consulting (v1)",
     description: "Primeira versão do contrato enviada pela contratada para análise e comparação.",
@@ -32,24 +41,6 @@ const documents = [
     status: "Referência",
     type: "Original",
     path: "/documents/Contrato_Original_Why_Consulting.md"
-  },
-  {
-    id: "contrato-why-v2",
-    title: "Contrato Why Consulting (v2) + Anexo 1",
-    description: "Nova versão do contrato com cronograma macro de entregáveis detalhado (12 meses).",
-    date: "08/12/2025",
-    status: "Em Análise",
-    type: "Original",
-    path: "/documents/Contrato_Why_Consulting_v2.pdf"
-  },
-  {
-    id: "cronograma-anexo1-v2",
-    title: "Cronograma Macro - Anexo 1 (Contrato v2)",
-    description: "Cronograma detalhado de 12 meses com 5 fases principais e marcos de validação.",
-    date: "08/12/2025",
-    status: "Aprovado",
-    type: "Anexo",
-    path: "/documents/Cronograma_Why_Consulting_v2_Anexo1.md"
   },
   {
     id: "contrato-consolidado",
@@ -133,44 +124,34 @@ const documents = [
     path: "/documents/Anexo_H_PI_Titularidade.md"
   },
   {
-    id: "analise-juridica-why-v2",
-    title: "Relatório de Análise Jurídica - Contrato v2",
-    description: "Análise executiva com identificação de 5 cláusulas críticas e recomendações prioritárias.",
-    date: "08/12/2025",
-    status: "Aprovado",
-    type: "Anexo",
-    path: "/documents/relatorio_analise_contrato_why_consulting.md"
-  },
-  {
-    id: "analise-detalhada-why-v2",
-    title: "Análise Técnica Detalhada - Contrato v2",
-    description: "Documento técnico com extração completa de cláusulas e matriz de riscos.",
-    date: "08/12/2025",
-    status: "Aprovado",
-    type: "Anexo",
-    path: "/documents/analise_contrato_why_consulting.md"
+    id: "manual-marca",
+    title: "Manual de Identidade Visual",
+    description: "Documento oficial com diretrizes de marca, logo e aplicações.",
+    date: "06/12/2025",
+    status: "Oficial",
+    type: "PDF",
+    path: "/documents/Manual_de_Identidade_Visual.pdf"
   }
 ];
 
 export default function Contratos() {
   const [selectedDoc, setSelectedDoc] = useState<string | null>(null);
   const [docContent, setDocContent] = useState<string>("");
-  const [docPath, setDocPath] = useState<string>("");
   const [currentVersions, setCurrentVersions] = useState<Version[]>([]);
   const [activeVersionId, setActiveVersionId] = useState<string>("");
 
   const loadDocument = async (docId: string, path: string) => {
+    // Check if it's a PDF file
+    if (path.endsWith('.pdf')) {
+      // Open PDF in new tab instead of trying to render it
+      window.open(path, '_blank');
+      return;
+    }
+    
     try {
-      setDocPath(path);
-      
-      // Only fetch text content for non-PDF files
-      if (!path.toLowerCase().endsWith('.pdf')) {
-        const response = await fetch(path);
-        const text = await response.text();
-        setDocContent(text);
-      } else {
-        setDocContent(""); // Clear content for PDFs
-      }
+      const response = await fetch(path);
+      const text = await response.text();
+      setDocContent(text);
       
       // Load versions for this doc
       const versions = mockVersions[docId] || mockVersions["default"];
@@ -188,34 +169,6 @@ export default function Contratos() {
     // In a real app, this would fetch the specific version content
     // For demo, we'll just show a toast or update content slightly
     console.log(`Switching to version ${version.version}`);
-  };
-
-  const handleDownload = async (doc: typeof documents[0]) => {
-    try {
-      const response = await fetch(doc.path);
-      const blob = await response.blob();
-      
-      // Create download link
-      const url = window.URL.createObjectURL(blob);
-      const link = document.createElement('a');
-      link.href = url;
-      
-      // Set filename based on document type
-      const extension = doc.path.toLowerCase().endsWith('.pdf') ? 'pdf' : 'md';
-      const filename = `${doc.title.replace(/[^a-z0-9]/gi, '_')}.${extension}`;
-      link.download = filename;
-      
-      // Trigger download
-      document.body.appendChild(link);
-      link.click();
-      
-      // Cleanup
-      document.body.removeChild(link);
-      window.URL.revokeObjectURL(url);
-    } catch (error) {
-      console.error('Error downloading document:', error);
-      alert('Erro ao baixar o documento. Por favor, tente novamente.');
-    }
   };
 
   return (
@@ -293,20 +246,10 @@ export default function Contratos() {
                     <div className="flex flex-1 overflow-hidden">
                       {/* Document Content */}
                       <div className="flex-1 overflow-y-auto p-8 bg-muted/30">
-                        <div className="max-w-5xl mx-auto bg-background border border-border shadow-sm p-8 min-h-full">
-                          {docPath.toLowerCase().endsWith('.pdf') ? (
-                            // PDF Viewer
-                            <iframe
-                              src={docPath}
-                              className="w-full h-full min-h-[600px] border-0"
-                              title="PDF Viewer"
-                            />
-                          ) : (
-                            // Markdown Viewer
-                            <div className="prose prose-sm max-w-none dark:prose-invert">
-                              <Streamdown>{docContent}</Streamdown>
-                            </div>
-                          )}
+                        <div className="max-w-3xl mx-auto bg-background border border-border shadow-sm p-8 min-h-full">
+                          <div className="prose prose-sm max-w-none dark:prose-invert">
+                            <Streamdown>{docContent}</Streamdown>
+                          </div>
                         </div>
                       </div>
 
@@ -324,10 +267,7 @@ export default function Contratos() {
                       </div>
                       <div className="flex gap-2">
                         <Button variant="outline" className="rounded-none">Fechar</Button>
-                        <Button 
-                          className="rounded-none bg-primary"
-                          onClick={() => handleDownload(doc)}
-                        >
+                        <Button className="rounded-none bg-primary">
                           <Download className="mr-2 h-4 w-4" />
                           Baixar Versão Atual
                         </Button>
@@ -335,13 +275,7 @@ export default function Contratos() {
                     </div>
                   </DialogContent>
                 </Dialog>
-                <Button 
-                  variant="ghost" 
-                  size="icon" 
-                  className="rounded-none"
-                  onClick={() => handleDownload(doc)}
-                  title="Baixar documento"
-                >
+                <Button variant="ghost" size="icon" className="rounded-none">
                   <Download className="h-4 w-4" />
                 </Button>
               </div>
