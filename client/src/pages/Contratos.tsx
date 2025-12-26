@@ -1,7 +1,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { FileText, Download, Eye, Shield, CheckCircle, History, AlertCircle, FileSearch } from "lucide-react";
+import { FileText, Download, Eye, Shield, CheckCircle, History, AlertCircle, FileSearch, Clock, GitCompare } from "lucide-react";
 import { useState } from "react";
 import { Streamdown } from "streamdown";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
@@ -47,7 +47,38 @@ const documents = [
       pendingChanges: 4,
       comments: 1,
       analysts: ["KISLEU FERREIRA", "Adriele Roque"],
-      lastUpdate: "22/12/2024"
+      lastUpdate: "22/12/2024",
+      currentVersion: 2,
+      versions: [
+        {
+          versionId: "v2",
+          versionNumber: 2,
+          date: "22/12/2024",
+          time: "16:29",
+          analysts: ["KISLEU FERREIRA", "Adriele Roque"],
+          totalChanges: 5,
+          pendingChanges: 4,
+          acceptedChanges: 0,
+          rejectedChanges: 0,
+          comments: 1,
+          summary: "Adicionado comentário sobre nomenclatura 'Cliente' vs 'CONTRATANTE' por Adriele Roque",
+          isCurrentVersion: true
+        },
+        {
+          versionId: "v1",
+          versionNumber: 1,
+          date: "16/12/2024",
+          time: "15:53",
+          analysts: ["KISLEU FERREIRA"],
+          totalChanges: 4,
+          pendingChanges: 4,
+          acceptedChanges: 0,
+          rejectedChanges: 0,
+          comments: 0,
+          summary: "Análise inicial: qualificação legal, propriedade intelectual, remoção SaaS, complemento sócios",
+          isCurrentVersion: false
+        }
+      ]
     }
   },
   {
@@ -163,6 +194,7 @@ const documents = [
 export default function Contratos() {
   const [selectedDoc, setSelectedDoc] = useState<string | null>(null);
   const [docContent, setDocContent] = useState<string>("");
+  const [selectedAnalysisVersion, setSelectedAnalysisVersion] = useState<number | null>(null);
   const [currentVersions, setCurrentVersions] = useState<Version[]>([]);
   const [activeVersionId, setActiveVersionId] = useState<string>("");
 
@@ -328,6 +360,68 @@ export default function Contratos() {
                           <FileSearch className="h-5 w-5" />
                           Análise de Alterações - {doc.title}
                         </DialogTitle>
+                        {/* Seletor de Versão */}
+                        {doc.analysisData.versions && doc.analysisData.versions.length > 1 && (
+                          <div className="mt-4 p-4 bg-white dark:bg-gray-900 rounded-lg border border-orange-200 dark:border-orange-800">
+                            <div className="flex items-center justify-between mb-3">
+                              <div className="flex items-center gap-2">
+                                <History className="h-4 w-4 text-orange-600" />
+                                <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Histórico de Análises</span>
+                              </div>
+                              <Badge variant="secondary" className="text-xs">
+                                {doc.analysisData.versions.length} versões
+                              </Badge>
+                            </div>
+                            
+                            {/* Timeline Visual */}
+                            <div className="flex items-center gap-2 mb-4">
+                              {doc.analysisData.versions.map((version, idx) => (
+                                <div key={version.versionId} className="flex items-center flex-1">
+                                  <button
+                                    onClick={() => setSelectedAnalysisVersion(version.versionNumber)}
+                                    className={`flex flex-col items-center gap-1 p-2 rounded-lg transition-all ${
+                                      (selectedAnalysisVersion === version.versionNumber || (selectedAnalysisVersion === null && version.isCurrentVersion))
+                                        ? 'bg-orange-100 dark:bg-orange-900 ring-2 ring-orange-500'
+                                        : 'hover:bg-gray-100 dark:hover:bg-gray-800'
+                                    }`}
+                                  >
+                                    <div className="flex items-center gap-1">
+                                      <Clock className="h-3 w-3" />
+                                      <span className="text-xs font-semibold">v{version.versionNumber}</span>
+                                      {version.isCurrentVersion && (
+                                        <Badge variant="default" className="text-[10px] px-1 py-0 h-4">Atual</Badge>
+                                      )}
+                                    </div>
+                                    <span className="text-[10px] text-gray-600 dark:text-gray-400">{version.date}</span>
+                                    <span className="text-[10px] text-gray-500">{version.time}</span>
+                                    <div className="text-[9px] text-gray-500 max-w-[80px] truncate">
+                                      {version.analysts.join(", ")}
+                                    </div>
+                                    <Badge variant="outline" className="text-[9px] px-1 py-0 h-4 mt-1">
+                                      {version.totalChanges} alt.
+                                    </Badge>
+                                  </button>
+                                  {idx < doc.analysisData.versions.length - 1 && (
+                                    <div className="h-[2px] flex-1 bg-gradient-to-r from-orange-300 to-orange-200 dark:from-orange-700 dark:to-orange-800 mx-1" />
+                                  )}
+                                </div>
+                              ))}
+                            </div>
+                            
+                            {/* Resumo da Versão Selecionada */}
+                            {(() => {
+                              const currentVersion = doc.analysisData.versions.find(
+                                v => v.versionNumber === (selectedAnalysisVersion || doc.analysisData.currentVersion)
+                              );
+                              return currentVersion && (
+                                <div className="text-xs text-gray-600 dark:text-gray-400 bg-gray-50 dark:bg-gray-800 p-3 rounded">
+                                  <span className="font-medium">Resumo:</span> {currentVersion.summary}
+                                </div>
+                              );
+                            })()}
+                          </div>
+                        )}
+                        
                         <div className="flex gap-2 mt-3">
                           <Badge variant="outline" className="text-xs">
                             {doc.analysisData.totalChanges} alterações identificadas
@@ -468,6 +562,20 @@ export default function Contratos() {
                           Analistas: {doc.analysisData.analysts.join(" e ")} | Última atualização: {doc.analysisData.lastUpdate}
                         </div>
                         <div className="flex gap-2">
+                          {doc.analysisData.versions && doc.analysisData.versions.length > 1 && selectedAnalysisVersion && selectedAnalysisVersion !== doc.analysisData.currentVersion && (
+                            <Button 
+                              variant="outline" 
+                              className="rounded-none border-blue-500/30 bg-blue-50 hover:bg-blue-100 text-blue-700 hover:text-blue-800 dark:bg-blue-950 dark:text-blue-300 dark:hover:bg-blue-900"
+                              onClick={() => {
+                                const v1 = doc.analysisData.versions.find(v => v.versionNumber === selectedAnalysisVersion);
+                                const v2 = doc.analysisData.versions.find(v => v.versionNumber === doc.analysisData.currentVersion);
+                                alert(`Comparação entre v${v1?.versionNumber} e v${v2?.versionNumber}:\n\nv${v1?.versionNumber} (${v1?.date}):\n- ${v1?.totalChanges} alterações\n- Analistas: ${v1?.analysts.join(", ")}\n\nv${v2?.versionNumber} (${v2?.date}):\n- ${v2?.totalChanges} alterações\n- Analistas: ${v2?.analysts.join(", ")}\n\nDiferenças:\n- ${(v2?.totalChanges || 0) - (v1?.totalChanges || 0)} nova(s) alteração(ões)`);
+                              }}
+                            >
+                              <GitCompare className="mr-2 h-4 w-4" />
+                              Comparar com Versão Atual
+                            </Button>
+                          )}
                           <Button variant="outline" className="rounded-none">Fechar</Button>
                           <Button className="rounded-none bg-primary">
                             <Download className="mr-2 h-4 w-4" />
