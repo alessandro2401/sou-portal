@@ -1,7 +1,7 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { FileText, Download, Eye, Shield, CheckCircle, History } from "lucide-react";
+import { FileText, Download, Eye, Shield, CheckCircle, History, AlertCircle, FileSearch } from "lucide-react";
 import { useState } from "react";
 import { Streamdown } from "streamdown";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
@@ -40,7 +40,15 @@ const documents = [
     date: "12/12/2025",
     status: "Em Análise",
     type: "Contrato",
-    path: "/contrato-why-v2-anexo1.pdf"
+    path: "/contrato-why-v2-anexo1.pdf",
+    hasAnalysis: true,
+    analysisData: {
+      totalChanges: 5,
+      pendingChanges: 4,
+      comments: 1,
+      analysts: ["KISLEU FERREIRA", "Adriele Roque"],
+      lastUpdate: "22/12/2024"
+    }
   },
   {
     id: "historico-relacao",
@@ -231,18 +239,19 @@ export default function Contratos() {
                 <Shield className="h-3 w-3 mr-1" />
                 Proteção Jurídica Ativa
               </div>
-              <div className="flex gap-2">
-                <Dialog>
-                  <DialogTrigger asChild>
-                    <Button 
-                      variant="outline" 
-                      className="w-full rounded-none border-primary/20 hover:bg-primary/5 hover:text-primary"
-                      onClick={() => loadDocument(doc.id, doc.path)}
-                    >
-                      <Eye className="mr-2 h-4 w-4" />
-                      Visualizar
-                    </Button>
-                  </DialogTrigger>
+              <div className="flex flex-col gap-2">
+                <div className="flex gap-2">
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <Button 
+                        variant="outline" 
+                        className="w-full rounded-none border-primary/20 hover:bg-primary/5 hover:text-primary"
+                        onClick={() => loadDocument(doc.id, doc.path)}
+                      >
+                        <Eye className="mr-2 h-4 w-4" />
+                        Visualizar
+                      </Button>
+                    </DialogTrigger>
                   <DialogContent className="max-w-6xl h-[85vh] flex flex-col p-0 rounded-none gap-0">
                     <DialogHeader className="p-6 border-b border-border shrink-0">
                       <div className="flex items-center justify-between">
@@ -292,10 +301,183 @@ export default function Contratos() {
                       </div>
                     </div>
                   </DialogContent>
-                </Dialog>
-                <Button variant="ghost" size="icon" className="rounded-none">
-                  <Download className="h-4 w-4" />
-                </Button>
+                  </Dialog>
+                  <Button variant="ghost" size="icon" className="rounded-none">
+                    <Download className="h-4 w-4" />
+                  </Button>
+                </div>
+                
+                {/* Botão de Análise de Alterações - apenas para documentos com análise */}
+                {doc.hasAnalysis && (
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <Button 
+                        variant="outline" 
+                        className="w-full rounded-none border-orange-500/30 bg-orange-50 hover:bg-orange-100 text-orange-700 hover:text-orange-800 dark:bg-orange-950 dark:text-orange-300 dark:hover:bg-orange-900"
+                      >
+                        <FileSearch className="mr-2 h-4 w-4" />
+                        Ver Análise de Alterações
+                        <Badge variant="secondary" className="ml-2 bg-orange-200 text-orange-800 dark:bg-orange-900 dark:text-orange-200">
+                          {doc.analysisData.pendingChanges} pendentes
+                        </Badge>
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent className="max-w-5xl h-[85vh] flex flex-col p-0 rounded-none gap-0">
+                      <DialogHeader className="p-6 border-b border-border shrink-0 bg-orange-50 dark:bg-orange-950">
+                        <DialogTitle className="flex items-center gap-2 text-orange-900 dark:text-orange-100">
+                          <FileSearch className="h-5 w-5" />
+                          Análise de Alterações - {doc.title}
+                        </DialogTitle>
+                        <div className="flex gap-2 mt-3">
+                          <Badge variant="outline" className="text-xs">
+                            {doc.analysisData.totalChanges} alterações identificadas
+                          </Badge>
+                          <Badge variant="outline" className="text-xs">
+                            {doc.analysisData.comments} comentário(s)
+                          </Badge>
+                          <Badge variant="outline" className="text-xs">
+                            Analistas: {doc.analysisData.analysts.join(", ")}
+                          </Badge>
+                          <Badge variant="outline" className="text-xs">
+                            Última atualização: {doc.analysisData.lastUpdate}
+                          </Badge>
+                        </div>
+                      </DialogHeader>
+                      
+                      <div className="flex-1 overflow-y-auto p-8 bg-muted/30">
+                        <div className="max-w-4xl mx-auto space-y-6">
+                          {/* Alteração 1 */}
+                          <div className="bg-background border border-border shadow-sm p-6 rounded-lg">
+                            <div className="flex items-start justify-between mb-4">
+                              <div>
+                                <h3 className="font-semibold text-lg">1. Qualificação do Representante Legal</h3>
+                                <p className="text-sm text-muted-foreground mt-1">Cláusula 1.2 - CONTRATADA (WHY CONSULTING LTDA)</p>
+                              </div>
+                              <Badge className="bg-orange-100 text-orange-800 border-orange-300 dark:bg-orange-900 dark:text-orange-200">Pendente</Badge>
+                            </div>
+                            <div className="space-y-3">
+                              <div className="bg-red-50 dark:bg-red-950 border border-red-200 dark:border-red-800 p-4 rounded">
+                                <p className="text-sm font-medium text-red-900 dark:text-red-100 mb-2">Sugestão de KISLEU FERREIRA (16/12, 13:56):</p>
+                                <p className="text-sm text-red-800 dark:text-red-200">Adicionar: "INDICAR QUALIFICAÇÃO COMPLETA DO REPRESENTANTE LEGAL CONFORME ESTATUTO (APRESENTAR ÚLTIMO CONTRATO SOCIAL REGISTRADO CONSOLIDADO PARA CONFERÊNCIA JURÍDICA)"</p>
+                              </div>
+                              <div className="bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800 p-4 rounded">
+                                <p className="text-sm font-medium text-blue-900 dark:text-blue-100 mb-2">Comentário de Adriele Roque (22/12, 16:29):</p>
+                                <p className="text-sm text-blue-800 dark:text-blue-200">Talvez utilizar o termo "Cliente" ao invés de "CONTRATANTE"</p>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Alteração 2 */}
+                          <div className="bg-background border border-border shadow-sm p-6 rounded-lg">
+                            <div className="flex items-start justify-between mb-4">
+                              <div>
+                                <h3 className="font-semibold text-lg">2. Propriedade Intelectual - Código-Fonte</h3>
+                                <p className="text-sm text-muted-foreground mt-1">Cláusula 2.1, alínea a) - Desenvolvimento Customizado</p>
+                              </div>
+                              <Badge className="bg-orange-100 text-orange-800 border-orange-300 dark:bg-orange-900 dark:text-orange-200">Pendente</Badge>
+                            </div>
+                            <div className="space-y-3">
+                              <div className="bg-red-50 dark:bg-red-950 border border-red-200 dark:border-red-800 p-4 rounded">
+                                <p className="text-sm font-medium text-red-900 dark:text-red-100 mb-2">Sugestão de KISLEU FERREIRA (16/12, 14:05):</p>
+                                <p className="text-sm text-red-800 dark:text-red-200 mb-2">Substituir ponto-e-vírgula ";" por:</p>
+                                <p className="text-sm text-red-800 dark:text-red-200 font-mono bg-red-100 dark:bg-red-900 p-2 rounded">
+                                  "à Contratante, em que todo o código-fonte, banco de dados, arquitetura, documentação e artefatos produzidos serão de propriedade exclusiva do contratante (licença plena, irrevogável e perpétua), renunciando a contratada integralmente os direitos patrimoniais de autor sobre o sistema."
+                                </p>
+                              </div>
+                              <div className="bg-yellow-50 dark:bg-yellow-950 border border-yellow-200 dark:border-yellow-800 p-4 rounded">
+                                <p className="text-sm font-medium text-yellow-900 dark:text-yellow-100 mb-1">⚠️ Atenção:</p>
+                                <p className="text-sm text-yellow-800 dark:text-yellow-200">Texto marcado em vermelho no documento original - requer revisão jurídica sobre direitos de propriedade intelectual</p>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Alteração 3 */}
+                          <div className="bg-background border border-border shadow-sm p-6 rounded-lg">
+                            <div className="flex items-start justify-between mb-4">
+                              <div>
+                                <h3 className="font-semibold text-lg">3. Remoção de Licenciamento SaaS</h3>
+                                <p className="text-sm text-muted-foreground mt-1">Cláusula 2.1, alínea b) - Licenciamento de Uso (SaaS)</p>
+                              </div>
+                              <Badge className="bg-orange-100 text-orange-800 border-orange-300 dark:bg-orange-900 dark:text-orange-200">Pendente</Badge>
+                            </div>
+                            <div className="space-y-3">
+                              <div className="bg-red-50 dark:bg-red-950 border border-red-200 dark:border-red-800 p-4 rounded">
+                                <p className="text-sm font-medium text-red-900 dark:text-red-100 mb-2">Sugestão de KISLEU FERREIRA:</p>
+                                <p className="text-sm text-red-800 dark:text-red-200 mb-2">Remover completamente a alínea b):</p>
+                                <p className="text-sm text-red-800 dark:text-red-200 line-through font-mono bg-red-100 dark:bg-red-900 p-2 rounded">
+                                  "Licenciamento de Uso (SaaS): Disponibilização de acesso à Plataforma Unique, de propriedade da CONTRATADA."
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Alteração 4 */}
+                          <div className="bg-background border border-border shadow-sm p-6 rounded-lg">
+                            <div className="flex items-start justify-between mb-4">
+                              <div>
+                                <h3 className="font-semibold text-lg">4. Complemento sobre Sócios</h3>
+                                <p className="text-sm text-muted-foreground mt-1">Cláusula 2.2 - Módulo Comercial (Aquisição e Vendas)</p>
+                              </div>
+                              <Badge className="bg-orange-100 text-orange-800 border-orange-300 dark:bg-orange-900 dark:text-orange-200">Pendente</Badge>
+                            </div>
+                            <div className="space-y-3">
+                              <div className="bg-green-50 dark:bg-green-950 border border-green-200 dark:border-green-800 p-4 rounded">
+                                <p className="text-sm font-medium text-green-900 dark:text-green-100 mb-2">Sugestão de KISLEU FERREIRA (16/12, 15:53):</p>
+                                <p className="text-sm text-green-800 dark:text-green-200">Adicionar: "SÓCIOS X SÓCIOS Y" na descrição do módulo de gestão de leads e funil de vendas</p>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Resumo */}
+                          <div className="bg-background border-2 border-primary/20 shadow-md p-6 rounded-lg">
+                            <h3 className="font-semibold text-lg mb-4 flex items-center gap-2">
+                              <AlertCircle className="h-5 w-5 text-primary" />
+                              Resumo das Alterações
+                            </h3>
+                            <div className="grid grid-cols-2 gap-4">
+                              <div className="space-y-2">
+                                <p className="text-sm font-medium">Status</p>
+                                <div className="flex gap-2 flex-wrap">
+                                  <Badge variant="outline" className="bg-orange-50 text-orange-700 border-orange-300">
+                                    {doc.analysisData.pendingChanges} Pendentes
+                                  </Badge>
+                                  <Badge variant="outline" className="bg-gray-50 text-gray-700 border-gray-300">
+                                    0 Aceitas
+                                  </Badge>
+                                  <Badge variant="outline" className="bg-gray-50 text-gray-700 border-gray-300">
+                                    0 Rejeitadas
+                                  </Badge>
+                                </div>
+                              </div>
+                              <div className="space-y-2">
+                                <p className="text-sm font-medium">Próximos Passos</p>
+                                <ul className="text-sm space-y-1 text-muted-foreground">
+                                  <li>• Revisar qualificação do representante legal</li>
+                                  <li>• Clarificar propriedade intelectual</li>
+                                  <li>• Remover referência ao SaaS</li>
+                                  <li>• Complementar informações sobre sócios</li>
+                                </ul>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="p-4 border-t border-border bg-background flex justify-between items-center shrink-0">
+                        <div className="text-xs text-muted-foreground">
+                          Analistas: {doc.analysisData.analysts.join(" e ")} | Última atualização: {doc.analysisData.lastUpdate}
+                        </div>
+                        <div className="flex gap-2">
+                          <Button variant="outline" className="rounded-none">Fechar</Button>
+                          <Button className="rounded-none bg-primary">
+                            <Download className="mr-2 h-4 w-4" />
+                            Exportar Análise (PDF)
+                          </Button>
+                        </div>
+                      </div>
+                    </DialogContent>
+                  </Dialog>
+                )}
               </div>
             </CardContent>
           </Card>
