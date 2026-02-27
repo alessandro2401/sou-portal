@@ -17,6 +17,10 @@ const mockVersions: Record<string, Version[]> = {
   "contrato-why-v3": [
     { id: "v3.0", version: "3.0", date: "27/02/2026", author: "Why Consulting", changes: "Terceira versão - Contrato completo de Desenvolvimento CRM + BackOffice + Plataforma Unique (SaaS). 19 páginas com Anexo I (Cronograma) e Anexo II (Tabela de Valores).", status: "current" }
   ],
+  "contrato-why-v3-juridico": [
+    { id: "v3.1", version: "3.1", date: "27/02/2026", author: "Jurídico SMMB", changes: "Revisão jurídica completa do contrato v3 com anotações, inclusões de cláusulas de proteção, exclusões de itens desfavoráveis e 6 pontos adicionais de revisão. 23 páginas.", status: "current" },
+    { id: "v3.0", version: "3.0", date: "27/02/2026", author: "Why Consulting", changes: "Versão original recebida da Why Consulting.", status: "outdated" }
+  ],
   "contrato-original-why": [
     { id: "v1.0", version: "1.0", date: "28/11/2025", author: "Why Consulting", changes: "Envio original para análise", status: "current" }
   ],
@@ -92,6 +96,40 @@ const documents = [
     status: "Em Análise",
     type: "Contrato",
     path: "/contrato-why-v3-crm.pdf"
+  },
+  {
+    id: "contrato-why-v3-juridico",
+    title: "Contrato v3 - Revisão Jurídica SMMB",
+    description: "Versão do contrato v3 com anotações e sugestões do jurídico do Grupo MMB. Inclui: inclusões de cláusulas de proteção (propriedade intelectual, código-fonte, vendor lock-in), exclusões de itens desfavoráveis, alteração de valores e prazos, e 6 pontos adicionais de revisão pendentes. 23 páginas. Disponível em PDF e DOCX.",
+    date: "27/02/2026",
+    status: "Revisão Jurídica",
+    type: "Contrato",
+    path: "/contrato-v3-revisao-juridica.pdf",
+    hasAnalysis: true,
+    analysisData: {
+      totalChanges: 6,
+      pendingChanges: 6,
+      comments: 0,
+      analysts: ["Jurídico SMMB"],
+      lastUpdate: "27/02/2026",
+      currentVersion: 1,
+      versions: [
+        {
+          versionId: "v1",
+          versionNumber: 1,
+          date: "27/02/2026",
+          time: "08:00",
+          analysts: ["Jurídico SMMB"],
+          totalChanges: 6,
+          pendingChanges: 6,
+          acceptedChanges: 0,
+          rejectedChanges: 0,
+          comments: 0,
+          summary: "6 pontos de revisão: (1) Cl. 2.2a - Cotações multicálculo em todas as seguradoras; (2) Cl. 2.2c - Gestão unificada de associados/clientes por CPF/CNPJ; (3) Cl. 2.3.1 - Integração API com seguradoras atuais e futuras; (4) Cl. 3.4 - Início cobrança condicionado à substituição do SGA; (5) Cl. 5.3 - Especificação de credenciais (APIs, certificados, tokens); (6) Help Desk emergencial com SLA definido.",
+          isCurrentVersion: true
+        }
+      ]
+    }
   },
   {
     id: "historico-relacao",
@@ -275,6 +313,7 @@ export default function Contratos() {
                   doc.status === 'Superado' ? 'text-gray-400 line-through' :
                   doc.status === 'Sem Valor' ? 'text-gray-400' :
                   doc.status === 'Pendente' ? 'text-orange-600' :
+                  doc.status === 'Revisão Jurídica' ? 'text-amber-600' :
                   doc.status === 'Referência' ? 'text-purple-600' :
                   'text-green-600'
                 }`}>
@@ -355,9 +394,19 @@ export default function Contratos() {
                     </div>
                   </DialogContent>
                   </Dialog>
-                  <Button variant="ghost" size="icon" className="rounded-none">
-                    <Download className="h-4 w-4" />
+                  <Button variant="ghost" size="icon" className="rounded-none" asChild>
+                    <a href={doc.path} download>
+                      <Download className="h-4 w-4" />
+                    </a>
                   </Button>
+                  {doc.id === 'contrato-why-v3-juridico' && (
+                    <Button variant="ghost" size="sm" className="rounded-none text-xs" asChild>
+                      <a href="/contrato-v3-revisao-juridica.docx" download>
+                        <Download className="mr-1 h-3 w-3" />
+                        DOCX
+                      </a>
+                    </Button>
+                  )}
                 </div>
                 
                 {/* Botão de Análise de Alterações - apenas para documentos com análise */}
