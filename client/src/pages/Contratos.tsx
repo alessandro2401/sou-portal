@@ -1,7 +1,8 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { FileText, Download, Eye, Shield, CheckCircle, History, AlertCircle, FileSearch, Clock, GitCompare } from "lucide-react";
+import { FileText, Download, Eye, Shield, CheckCircle, History, AlertCircle, FileSearch, Clock, GitCompare, ChevronRight, Scale, Database, Link2, CreditCard, KeyRound, Headphones } from "lucide-react";
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
 import { useState } from "react";
 import { Streamdown } from "streamdown";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
@@ -510,120 +511,366 @@ export default function Contratos() {
                       
                       <div className="flex-1 overflow-y-auto p-8 bg-muted/30">
                         <div className="max-w-4xl mx-auto space-y-6">
-                          {/* Alteração 1 */}
-                          <div className="bg-background border border-border shadow-sm p-6 rounded-lg">
-                            <div className="flex items-start justify-between mb-4">
-                              <div>
-                                <h3 className="font-semibold text-lg">1. Qualificação do Representante Legal</h3>
-                                <p className="text-sm text-muted-foreground mt-1">Cláusula 1.2 - CONTRATADA (WHY CONSULTING LTDA)</p>
+                          {doc.id === "contrato-why-v3-juridico" ? (
+                            <>
+                              {/* Cabeçalho dos Pontos de Revisão */}
+                              <div className="bg-amber-50 dark:bg-amber-950 border border-amber-300 dark:border-amber-700 p-5 rounded-lg">
+                                <div className="flex items-center gap-3 mb-2">
+                                  <Scale className="h-5 w-5 text-amber-700 dark:text-amber-300" />
+                                  <h3 className="font-semibold text-lg text-amber-900 dark:text-amber-100">Pontos de Revisão Jurídica — Grupo MMB</h3>
+                                </div>
+                                <p className="text-sm text-amber-800 dark:text-amber-200">Os 6 pontos abaixo foram levantados pelo jurídico do Grupo MMB para inclusão obrigatória no contrato v3. Clique em cada item para expandir o texto integral da cláusula proposta.</p>
                               </div>
-                              <Badge className="bg-orange-100 text-orange-800 border-orange-300 dark:bg-orange-900 dark:text-orange-200">Pendente</Badge>
-                            </div>
-                            <div className="space-y-3">
-                              <div className="bg-red-50 dark:bg-red-950 border border-red-200 dark:border-red-800 p-4 rounded">
-                                <p className="text-sm font-medium text-red-900 dark:text-red-100 mb-2">Sugestão de KISLEU FERREIRA (16/12, 13:56):</p>
-                                <p className="text-sm text-red-800 dark:text-red-200">Adicionar: "INDICAR QUALIFICAÇÃO COMPLETA DO REPRESENTANTE LEGAL CONFORME ESTATUTO (APRESENTAR ÚLTIMO CONTRATO SOCIAL REGISTRADO CONSOLIDADO PARA CONFERÊNCIA JURÍDICA)"</p>
-                              </div>
-                              <div className="bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800 p-4 rounded">
-                                <p className="text-sm font-medium text-blue-900 dark:text-blue-100 mb-2">Comentário de Adriele Roque (22/12, 16:29):</p>
-                                <p className="text-sm text-blue-800 dark:text-blue-200">Talvez utilizar o termo "Cliente" ao invés de "CONTRATANTE"</p>
-                              </div>
-                            </div>
-                          </div>
 
-                          {/* Alteração 2 */}
-                          <div className="bg-background border border-border shadow-sm p-6 rounded-lg">
-                            <div className="flex items-start justify-between mb-4">
-                              <div>
-                                <h3 className="font-semibold text-lg">2. Propriedade Intelectual - Código-Fonte</h3>
-                                <p className="text-sm text-muted-foreground mt-1">Cláusula 2.1, alínea a) - Desenvolvimento Customizado</p>
-                              </div>
-                              <Badge className="bg-orange-100 text-orange-800 border-orange-300 dark:bg-orange-900 dark:text-orange-200">Pendente</Badge>
-                            </div>
-                            <div className="space-y-3">
-                              <div className="bg-red-50 dark:bg-red-950 border border-red-200 dark:border-red-800 p-4 rounded">
-                                <p className="text-sm font-medium text-red-900 dark:text-red-100 mb-2">Sugestão de KISLEU FERREIRA (16/12, 14:05):</p>
-                                <p className="text-sm text-red-800 dark:text-red-200 mb-2">Substituir ponto-e-vírgula ";" por:</p>
-                                <p className="text-sm text-red-800 dark:text-red-200 font-mono bg-red-100 dark:bg-red-900 p-2 rounded">
-                                  "à Contratante, em que todo o código-fonte, banco de dados, arquitetura, documentação e artefatos produzidos serão de propriedade exclusiva do contratante (licença plena, irrevogável e perpétua), renunciando a contratada integralmente os direitos patrimoniais de autor sobre o sistema."
-                                </p>
-                              </div>
-                              <div className="bg-yellow-50 dark:bg-yellow-950 border border-yellow-200 dark:border-yellow-800 p-4 rounded">
-                                <p className="text-sm font-medium text-yellow-900 dark:text-yellow-100 mb-1">⚠️ Atenção:</p>
-                                <p className="text-sm text-yellow-800 dark:text-yellow-200">Texto marcado em vermelho no documento original - requer revisão jurídica sobre direitos de propriedade intelectual</p>
-                              </div>
-                            </div>
-                          </div>
+                              {/* Lista Expandível com Accordion */}
+                              <Accordion type="multiple" className="space-y-3">
+                                {/* Ponto 1 - Cláusula 2.2a */}
+                                <AccordionItem value="ponto-1" className="bg-background border border-border shadow-sm rounded-lg overflow-hidden">
+                                  <AccordionTrigger className="px-6 py-4 hover:no-underline hover:bg-muted/50">
+                                    <div className="flex items-start gap-3 text-left">
+                                      <div className="flex items-center justify-center h-7 w-7 rounded-full bg-amber-100 dark:bg-amber-900 text-amber-800 dark:text-amber-200 text-sm font-bold shrink-0 mt-0.5">1</div>
+                                      <div>
+                                        <div className="flex items-center gap-2 mb-1">
+                                          <h3 className="font-semibold text-base">Módulo Comercial — Cotações e Multicálculo</h3>
+                                          <Badge className="bg-amber-100 text-amber-800 border-amber-300 dark:bg-amber-900 dark:text-amber-200 text-[10px]">Inclusão</Badge>
+                                        </div>
+                                        <p className="text-sm text-muted-foreground">Cláusula 2.2, alínea a) — Módulo Comercial (Aquisição e Vendas)</p>
+                                      </div>
+                                    </div>
+                                  </AccordionTrigger>
+                                  <AccordionContent className="px-6 pb-5">
+                                    <div className="ml-10 space-y-3">
+                                      <div className="bg-green-50 dark:bg-green-950 border border-green-200 dark:border-green-800 p-4 rounded">
+                                        <p className="text-sm font-medium text-green-900 dark:text-green-100 mb-2 flex items-center gap-2">
+                                          <CreditCard className="h-4 w-4" />
+                                          Texto integral a ser inserido:
+                                        </p>
+                                        <p className="text-sm text-green-800 dark:text-green-200 leading-relaxed">
+                                          Inserir previsão expressa de que o sistema deverá permitir a realização de <strong>cotações e multicálculo em todas as seguradoras</strong> nas quais o Grupo possua cadastro ativo — <strong>atuais e futuras durante a vigência contratual</strong> — bem como contemplar integralmente a operação do produto <strong>Movimento Mais Brasil</strong>, garantindo isonomia operacional, escalabilidade e integração plena no módulo comercial.
+                                        </p>
+                                      </div>
+                                      <div className="bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800 p-3 rounded">
+                                        <p className="text-xs text-blue-800 dark:text-blue-200"><strong>Objetivo:</strong> Garantir que o sistema suporte todas as seguradoras parceiras (atuais e futuras) e o produto Movimento Mais Brasil, evitando limitações operacionais.</p>
+                                      </div>
+                                    </div>
+                                  </AccordionContent>
+                                </AccordionItem>
 
-                          {/* Alteração 3 */}
-                          <div className="bg-background border border-border shadow-sm p-6 rounded-lg">
-                            <div className="flex items-start justify-between mb-4">
-                              <div>
-                                <h3 className="font-semibold text-lg">3. Remoção de Licenciamento SaaS</h3>
-                                <p className="text-sm text-muted-foreground mt-1">Cláusula 2.1, alínea b) - Licenciamento de Uso (SaaS)</p>
-                              </div>
-                              <Badge className="bg-orange-100 text-orange-800 border-orange-300 dark:bg-orange-900 dark:text-orange-200">Pendente</Badge>
-                            </div>
-                            <div className="space-y-3">
-                              <div className="bg-red-50 dark:bg-red-950 border border-red-200 dark:border-red-800 p-4 rounded">
-                                <p className="text-sm font-medium text-red-900 dark:text-red-100 mb-2">Sugestão de KISLEU FERREIRA:</p>
-                                <p className="text-sm text-red-800 dark:text-red-200 mb-2">Remover completamente a alínea b):</p>
-                                <p className="text-sm text-red-800 dark:text-red-200 line-through font-mono bg-red-100 dark:bg-red-900 p-2 rounded">
-                                  "Licenciamento de Uso (SaaS): Disponibilização de acesso à Plataforma Unique, de propriedade da CONTRATADA."
-                                </p>
-                              </div>
-                            </div>
-                          </div>
+                                {/* Ponto 2 - Cláusula 2.2c */}
+                                <AccordionItem value="ponto-2" className="bg-background border border-border shadow-sm rounded-lg overflow-hidden">
+                                  <AccordionTrigger className="px-6 py-4 hover:no-underline hover:bg-muted/50">
+                                    <div className="flex items-start gap-3 text-left">
+                                      <div className="flex items-center justify-center h-7 w-7 rounded-full bg-amber-100 dark:bg-amber-900 text-amber-800 dark:text-amber-200 text-sm font-bold shrink-0 mt-0.5">2</div>
+                                      <div>
+                                        <div className="flex items-center gap-2 mb-1">
+                                          <h3 className="font-semibold text-base">Gestão Unificada de Carteira (CRM)</h3>
+                                          <Badge className="bg-amber-100 text-amber-800 border-amber-300 dark:bg-amber-900 dark:text-amber-200 text-[10px]">Inclusão</Badge>
+                                        </div>
+                                        <p className="text-sm text-muted-foreground">Cláusula 2.2, alínea c) — Módulo de Gestão de Carteira (CRM)</p>
+                                      </div>
+                                    </div>
+                                  </AccordionTrigger>
+                                  <AccordionContent className="px-6 pb-5">
+                                    <div className="ml-10 space-y-3">
+                                      <div className="bg-green-50 dark:bg-green-950 border border-green-200 dark:border-green-800 p-4 rounded">
+                                        <p className="text-sm font-medium text-green-900 dark:text-green-100 mb-2 flex items-center gap-2">
+                                          <Database className="h-4 w-4" />
+                                          Texto integral a ser inserido:
+                                        </p>
+                                        <p className="text-sm text-green-800 dark:text-green-200 leading-relaxed">
+                                          Inserir que o módulo deverá contemplar a <strong>gestão unificada de associados e clientes</strong>, incluindo o controle e acompanhamento de todos os tipos de seguros e produtos ativos e inativos comercializados pela CONTRATANTE, com <strong>visão consolidada por CPF/CNPJ</strong>, histórico completo de relacionamento, apólices vigentes, renovações e demais vínculos contratuais.
+                                        </p>
+                                      </div>
+                                      <div className="bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800 p-3 rounded">
+                                        <p className="text-xs text-blue-800 dark:text-blue-200"><strong>Objetivo:</strong> Assegurar visão 360° do cliente com todos os produtos, seguros e vínculos em uma única interface consolidada por CPF/CNPJ.</p>
+                                      </div>
+                                    </div>
+                                  </AccordionContent>
+                                </AccordionItem>
 
-                          {/* Alteração 4 */}
-                          <div className="bg-background border border-border shadow-sm p-6 rounded-lg">
-                            <div className="flex items-start justify-between mb-4">
-                              <div>
-                                <h3 className="font-semibold text-lg">4. Complemento sobre Sócios</h3>
-                                <p className="text-sm text-muted-foreground mt-1">Cláusula 2.2 - Módulo Comercial (Aquisição e Vendas)</p>
-                              </div>
-                              <Badge className="bg-orange-100 text-orange-800 border-orange-300 dark:bg-orange-900 dark:text-orange-200">Pendente</Badge>
-                            </div>
-                            <div className="space-y-3">
-                              <div className="bg-green-50 dark:bg-green-950 border border-green-200 dark:border-green-800 p-4 rounded">
-                                <p className="text-sm font-medium text-green-900 dark:text-green-100 mb-2">Sugestão de KISLEU FERREIRA (16/12, 15:53):</p>
-                                <p className="text-sm text-green-800 dark:text-green-200">Adicionar: "SÓCIOS X SÓCIOS Y" na descrição do módulo de gestão de leads e funil de vendas</p>
-                              </div>
-                            </div>
-                          </div>
+                                {/* Ponto 3 - Cláusula 2.3.1 */}
+                                <AccordionItem value="ponto-3" className="bg-background border border-border shadow-sm rounded-lg overflow-hidden">
+                                  <AccordionTrigger className="px-6 py-4 hover:no-underline hover:bg-muted/50">
+                                    <div className="flex items-start gap-3 text-left">
+                                      <div className="flex items-center justify-center h-7 w-7 rounded-full bg-amber-100 dark:bg-amber-900 text-amber-800 dark:text-amber-200 text-sm font-bold shrink-0 mt-0.5">3</div>
+                                      <div>
+                                        <div className="flex items-center gap-2 mb-1">
+                                          <h3 className="font-semibold text-base">Integrações via API com Seguradoras</h3>
+                                          <Badge className="bg-amber-100 text-amber-800 border-amber-300 dark:bg-amber-900 dark:text-amber-200 text-[10px]">Inclusão</Badge>
+                                        </div>
+                                        <p className="text-sm text-muted-foreground">Cláusula 2.3.1 — Integrações</p>
+                                      </div>
+                                    </div>
+                                  </AccordionTrigger>
+                                  <AccordionContent className="px-6 pb-5">
+                                    <div className="ml-10 space-y-3">
+                                      <div className="bg-green-50 dark:bg-green-950 border border-green-200 dark:border-green-800 p-4 rounded">
+                                        <p className="text-sm font-medium text-green-900 dark:text-green-100 mb-2 flex items-center gap-2">
+                                          <Link2 className="h-4 w-4" />
+                                          Texto integral a ser inserido:
+                                        </p>
+                                        <p className="text-sm text-green-800 dark:text-green-200 leading-relaxed">
+                                          Inserir previsão de que o sistema deverá possibilitar <strong>integração via API com as seguradoras</strong> nas quais o Grupo possua cadastro ativo — <strong>atuais e futuras durante a vigência contratual</strong> — conforme disponibilidade técnica das respectivas companhias, garantindo interoperabilidade, troca automatizada de dados, atualização sistêmica e sincronização de informações operacionais.
+                                        </p>
+                                      </div>
+                                      <div className="bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800 p-3 rounded">
+                                        <p className="text-xs text-blue-800 dark:text-blue-200"><strong>Objetivo:</strong> Garantir que o sistema se integre com todas as seguradoras parceiras via API, incluindo futuras parcerias, sem necessidade de renegociação contratual.</p>
+                                      </div>
+                                    </div>
+                                  </AccordionContent>
+                                </AccordionItem>
 
-                          {/* Resumo */}
-                          <div className="bg-background border-2 border-primary/20 shadow-md p-6 rounded-lg">
-                            <h3 className="font-semibold text-lg mb-4 flex items-center gap-2">
-                              <AlertCircle className="h-5 w-5 text-primary" />
-                              Resumo das Alterações
-                            </h3>
-                            <div className="grid grid-cols-2 gap-4">
-                              <div className="space-y-2">
-                                <p className="text-sm font-medium">Status</p>
-                                <div className="flex gap-2 flex-wrap">
-                                  <Badge variant="outline" className="bg-orange-50 text-orange-700 border-orange-300">
-                                    {doc.analysisData.pendingChanges} Pendentes
-                                  </Badge>
-                                  <Badge variant="outline" className="bg-gray-50 text-gray-700 border-gray-300">
-                                    0 Aceitas
-                                  </Badge>
-                                  <Badge variant="outline" className="bg-gray-50 text-gray-700 border-gray-300">
-                                    0 Rejeitadas
-                                  </Badge>
+                                {/* Ponto 4 - Cláusula 3.4 */}
+                                <AccordionItem value="ponto-4" className="bg-background border border-border shadow-sm rounded-lg overflow-hidden">
+                                  <AccordionTrigger className="px-6 py-4 hover:no-underline hover:bg-muted/50">
+                                    <div className="flex items-start gap-3 text-left">
+                                      <div className="flex items-center justify-center h-7 w-7 rounded-full bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 text-sm font-bold shrink-0 mt-0.5">4</div>
+                                      <div>
+                                        <div className="flex items-center gap-2 mb-1">
+                                          <h3 className="font-semibold text-base">Início da Cobrança — Substituição do SGA</h3>
+                                          <Badge className="bg-red-100 text-red-800 border-red-300 dark:bg-red-900 dark:text-red-200 text-[10px]">Proteção Financeira</Badge>
+                                        </div>
+                                        <p className="text-sm text-muted-foreground">Cláusula 3.4 — Início da Cobrança (Substituição do SGA)</p>
+                                      </div>
+                                    </div>
+                                  </AccordionTrigger>
+                                  <AccordionContent className="px-6 pb-5">
+                                    <div className="ml-10 space-y-3">
+                                      <div className="bg-green-50 dark:bg-green-950 border border-green-200 dark:border-green-800 p-4 rounded">
+                                        <p className="text-sm font-medium text-green-900 dark:text-green-100 mb-2 flex items-center gap-2">
+                                          <CreditCard className="h-4 w-4" />
+                                          Texto integral a ser inserido:
+                                        </p>
+                                        <p className="text-sm text-green-800 dark:text-green-200 leading-relaxed">
+                                          Inserir previsão de que o <strong>início da cobrança da mensalidade (Licença + Suporte) estará condicionado à validação técnica da plena substituição do sistema SGA</strong> e à efetiva possibilidade de sua descontinuidade, sem prejuízo operacional à CONTRATANTE. Caso ocorram intercorrências técnicas, contratuais ou operacionais que impeçam o cancelamento do SGA ou comprometam a transição integral, as partes deverão negociar solução adequada, <strong>ficando suspensa a cobrança até a efetiva estabilização e transição operacional definitiva</strong>.
+                                        </p>
+                                      </div>
+                                      <div className="bg-yellow-50 dark:bg-yellow-950 border border-yellow-200 dark:border-yellow-800 p-3 rounded">
+                                        <p className="text-xs text-yellow-800 dark:text-yellow-200"><strong>Atenção:</strong> Este ponto é crítico para proteção financeira. Evita pagamento duplo (SGA + novo sistema) durante o período de transição.</p>
+                                      </div>
+                                    </div>
+                                  </AccordionContent>
+                                </AccordionItem>
+
+                                {/* Ponto 5 - Cláusula 5.3 */}
+                                <AccordionItem value="ponto-5" className="bg-background border border-border shadow-sm rounded-lg overflow-hidden">
+                                  <AccordionTrigger className="px-6 py-4 hover:no-underline hover:bg-muted/50">
+                                    <div className="flex items-start gap-3 text-left">
+                                      <div className="flex items-center justify-center h-7 w-7 rounded-full bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 text-sm font-bold shrink-0 mt-0.5">5</div>
+                                      <div>
+                                        <div className="flex items-center gap-2 mb-1">
+                                          <h3 className="font-semibold text-base">Especificação de Credenciais</h3>
+                                          <Badge className="bg-purple-100 text-purple-800 border-purple-300 dark:bg-purple-900 dark:text-purple-200 text-[10px]">Segurança</Badge>
+                                        </div>
+                                        <p className="text-sm text-muted-foreground">Cláusula 5.3 — Credenciais</p>
+                                      </div>
+                                    </div>
+                                  </AccordionTrigger>
+                                  <AccordionContent className="px-6 pb-5">
+                                    <div className="ml-10 space-y-3">
+                                      <div className="bg-green-50 dark:bg-green-950 border border-green-200 dark:border-green-800 p-4 rounded">
+                                        <p className="text-sm font-medium text-green-900 dark:text-green-100 mb-2 flex items-center gap-2">
+                                          <KeyRound className="h-4 w-4" />
+                                          Texto integral a ser inserido:
+                                        </p>
+                                        <p className="text-sm text-green-800 dark:text-green-200 leading-relaxed">
+                                          Especificar objetivamente quais credenciais se enquadram nesta previsão, incluindo, mas não se limitando a: <strong>acessos a APIs de seguradoras, APIs bancárias, gateways de pagamento, certificados digitais, tokens de autenticação, chaves de integração, acessos a servidores, ambientes de homologação, credenciais de assinatura digital</strong> e quaisquer outras informações técnicas indispensáveis à implementação e funcionamento da plataforma.
+                                        </p>
+                                      </div>
+                                      <div className="bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800 p-3 rounded">
+                                        <p className="text-xs text-blue-800 dark:text-blue-200"><strong>Objetivo:</strong> Eliminar ambiguidade sobre quais credenciais a CONTRATANTE deve fornecer, protegendo contra responsabilização indevida por falhas de integração.</p>
+                                      </div>
+                                    </div>
+                                  </AccordionContent>
+                                </AccordionItem>
+
+                                {/* Ponto 6 - Help Desk */}
+                                <AccordionItem value="ponto-6" className="bg-background border border-border shadow-sm rounded-lg overflow-hidden">
+                                  <AccordionTrigger className="px-6 py-4 hover:no-underline hover:bg-muted/50">
+                                    <div className="flex items-start gap-3 text-left">
+                                      <div className="flex items-center justify-center h-7 w-7 rounded-full bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-sm font-bold shrink-0 mt-0.5">6</div>
+                                      <div>
+                                        <div className="flex items-center gap-2 mb-1">
+                                          <h3 className="font-semibold text-base">Help Desk — Atendimento Emergencial</h3>
+                                          <Badge className="bg-blue-100 text-blue-800 border-blue-300 dark:bg-blue-900 dark:text-blue-200 text-[10px]">SLA</Badge>
+                                        </div>
+                                        <p className="text-sm text-muted-foreground">Nova cláusula — Atendimento fora do horário comercial</p>
+                                      </div>
+                                    </div>
+                                  </AccordionTrigger>
+                                  <AccordionContent className="px-6 pb-5">
+                                    <div className="ml-10 space-y-3">
+                                      <div className="bg-green-50 dark:bg-green-950 border border-green-200 dark:border-green-800 p-4 rounded">
+                                        <p className="text-sm font-medium text-green-900 dark:text-green-100 mb-2 flex items-center gap-2">
+                                          <Headphones className="h-4 w-4" />
+                                          Texto integral a ser inserido:
+                                        </p>
+                                        <p className="text-sm text-green-800 dark:text-green-200 leading-relaxed">
+                                          Inserir previsão de <strong>canal de atendimento emergencial fora do horário comercial</strong>, destinado exclusivamente a incidentes críticos que comprometam total ou parcialmente a operação da Plataforma, com <strong>definição clara de SLA</strong> (tempo máximo de resposta e tempo máximo de solução), <strong>níveis de criticidade</strong> e eventual política de custos adicionais, caso aplicável.
+                                        </p>
+                                      </div>
+                                      <div className="bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800 p-3 rounded">
+                                        <p className="text-xs text-blue-800 dark:text-blue-200"><strong>Objetivo:</strong> Garantir continuidade operacional em situações críticas fora do horário comercial, com tempos de resposta e solução claramente definidos.</p>
+                                      </div>
+                                    </div>
+                                  </AccordionContent>
+                                </AccordionItem>
+                              </Accordion>
+
+                              {/* Resumo - Revisão Jurídica */}
+                              <div className="bg-background border-2 border-amber-300/50 shadow-md p-6 rounded-lg">
+                                <h3 className="font-semibold text-lg mb-4 flex items-center gap-2">
+                                  <Scale className="h-5 w-5 text-amber-700" />
+                                  Resumo dos Pontos de Revisão
+                                </h3>
+                                <div className="grid grid-cols-2 gap-4">
+                                  <div className="space-y-2">
+                                    <p className="text-sm font-medium">Classificação dos Pontos</p>
+                                    <div className="flex gap-2 flex-wrap">
+                                      <Badge variant="outline" className="bg-amber-50 text-amber-700 border-amber-300">
+                                        3 Inclusões de Cláusula
+                                      </Badge>
+                                      <Badge variant="outline" className="bg-red-50 text-red-700 border-red-300">
+                                        1 Proteção Financeira
+                                      </Badge>
+                                      <Badge variant="outline" className="bg-purple-50 text-purple-700 border-purple-300">
+                                        1 Segurança
+                                      </Badge>
+                                      <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-300">
+                                        1 SLA
+                                      </Badge>
+                                    </div>
+                                  </div>
+                                  <div className="space-y-2">
+                                    <p className="text-sm font-medium">Próximos Passos</p>
+                                    <ul className="text-sm space-y-1 text-muted-foreground">
+                                      <li>• Enviar pontos para a Why Consulting</li>
+                                      <li>• Aguardar contraproposta ou aceite</li>
+                                      <li>• Validar redação final com jurídico</li>
+                                      <li>• Consolidar versão v4 definitiva</li>
+                                    </ul>
+                                  </div>
                                 </div>
                               </div>
-                              <div className="space-y-2">
-                                <p className="text-sm font-medium">Próximos Passos</p>
-                                <ul className="text-sm space-y-1 text-muted-foreground">
-                                  <li>• Revisar qualificação do representante legal</li>
-                                  <li>• Clarificar propriedade intelectual</li>
-                                  <li>• Remover referência ao SaaS</li>
-                                  <li>• Complementar informações sobre sócios</li>
-                                </ul>
+                            </>
+                          ) : (
+                            <>
+                              {/* Alteração 1 - Contrato v2 */}
+                              <div className="bg-background border border-border shadow-sm p-6 rounded-lg">
+                                <div className="flex items-start justify-between mb-4">
+                                  <div>
+                                    <h3 className="font-semibold text-lg">1. Qualificação do Representante Legal</h3>
+                                    <p className="text-sm text-muted-foreground mt-1">Cláusula 1.2 - CONTRATADA (WHY CONSULTING LTDA)</p>
+                                  </div>
+                                  <Badge className="bg-orange-100 text-orange-800 border-orange-300 dark:bg-orange-900 dark:text-orange-200">Pendente</Badge>
+                                </div>
+                                <div className="space-y-3">
+                                  <div className="bg-red-50 dark:bg-red-950 border border-red-200 dark:border-red-800 p-4 rounded">
+                                    <p className="text-sm font-medium text-red-900 dark:text-red-100 mb-2">Sugestão de KISLEU FERREIRA (16/12, 13:56):</p>
+                                    <p className="text-sm text-red-800 dark:text-red-200">Adicionar: "INDICAR QUALIFICAÇÃO COMPLETA DO REPRESENTANTE LEGAL CONFORME ESTATUTO (APRESENTAR ÚLTIMO CONTRATO SOCIAL REGISTRADO CONSOLIDADO PARA CONFERÊNCIA JURÍDICA)"</p>
+                                  </div>
+                                  <div className="bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800 p-4 rounded">
+                                    <p className="text-sm font-medium text-blue-900 dark:text-blue-100 mb-2">Comentário de Adriele Roque (22/12, 16:29):</p>
+                                    <p className="text-sm text-blue-800 dark:text-blue-200">Talvez utilizar o termo "Cliente" ao invés de "CONTRATANTE"</p>
+                                  </div>
+                                </div>
                               </div>
-                            </div>
-                          </div>
+
+                              {/* Alteração 2 - Contrato v2 */}
+                              <div className="bg-background border border-border shadow-sm p-6 rounded-lg">
+                                <div className="flex items-start justify-between mb-4">
+                                  <div>
+                                    <h3 className="font-semibold text-lg">2. Propriedade Intelectual - Código-Fonte</h3>
+                                    <p className="text-sm text-muted-foreground mt-1">Cláusula 2.1, alínea a) - Desenvolvimento Customizado</p>
+                                  </div>
+                                  <Badge className="bg-orange-100 text-orange-800 border-orange-300 dark:bg-orange-900 dark:text-orange-200">Pendente</Badge>
+                                </div>
+                                <div className="space-y-3">
+                                  <div className="bg-red-50 dark:bg-red-950 border border-red-200 dark:border-red-800 p-4 rounded">
+                                    <p className="text-sm font-medium text-red-900 dark:text-red-100 mb-2">Sugestão de KISLEU FERREIRA (16/12, 14:05):</p>
+                                    <p className="text-sm text-red-800 dark:text-red-200 mb-2">Substituir ponto-e-vírgula ";" por:</p>
+                                    <p className="text-sm text-red-800 dark:text-red-200 font-mono bg-red-100 dark:bg-red-900 p-2 rounded">
+                                      "à Contratante, em que todo o código-fonte, banco de dados, arquitetura, documentação e artefatos produzidos serão de propriedade exclusiva do contratante (licença plena, irrevogável e perpétua), renunciando a contratada integralmente os direitos patrimoniais de autor sobre o sistema."
+                                    </p>
+                                  </div>
+                                  <div className="bg-yellow-50 dark:bg-yellow-950 border border-yellow-200 dark:border-yellow-800 p-4 rounded">
+                                    <p className="text-sm font-medium text-yellow-900 dark:text-yellow-100 mb-1">⚠️ Atenção:</p>
+                                    <p className="text-sm text-yellow-800 dark:text-yellow-200">Texto marcado em vermelho no documento original - requer revisão jurídica sobre direitos de propriedade intelectual</p>
+                                  </div>
+                                </div>
+                              </div>
+
+                              {/* Alteração 3 - Contrato v2 */}
+                              <div className="bg-background border border-border shadow-sm p-6 rounded-lg">
+                                <div className="flex items-start justify-between mb-4">
+                                  <div>
+                                    <h3 className="font-semibold text-lg">3. Remoção de Licenciamento SaaS</h3>
+                                    <p className="text-sm text-muted-foreground mt-1">Cláusula 2.1, alínea b) - Licenciamento de Uso (SaaS)</p>
+                                  </div>
+                                  <Badge className="bg-orange-100 text-orange-800 border-orange-300 dark:bg-orange-900 dark:text-orange-200">Pendente</Badge>
+                                </div>
+                                <div className="space-y-3">
+                                  <div className="bg-red-50 dark:bg-red-950 border border-red-200 dark:border-red-800 p-4 rounded">
+                                    <p className="text-sm font-medium text-red-900 dark:text-red-100 mb-2">Sugestão de KISLEU FERREIRA:</p>
+                                    <p className="text-sm text-red-800 dark:text-red-200 mb-2">Remover completamente a alínea b):</p>
+                                    <p className="text-sm text-red-800 dark:text-red-200 line-through font-mono bg-red-100 dark:bg-red-900 p-2 rounded">
+                                      "Licenciamento de Uso (SaaS): Disponibilização de acesso à Plataforma Unique, de propriedade da CONTRATADA."
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+
+                              {/* Alteração 4 - Contrato v2 */}
+                              <div className="bg-background border border-border shadow-sm p-6 rounded-lg">
+                                <div className="flex items-start justify-between mb-4">
+                                  <div>
+                                    <h3 className="font-semibold text-lg">4. Complemento sobre Sócios</h3>
+                                    <p className="text-sm text-muted-foreground mt-1">Cláusula 2.2 - Módulo Comercial (Aquisição e Vendas)</p>
+                                  </div>
+                                  <Badge className="bg-orange-100 text-orange-800 border-orange-300 dark:bg-orange-900 dark:text-orange-200">Pendente</Badge>
+                                </div>
+                                <div className="space-y-3">
+                                  <div className="bg-green-50 dark:bg-green-950 border border-green-200 dark:border-green-800 p-4 rounded">
+                                    <p className="text-sm font-medium text-green-900 dark:text-green-100 mb-2">Sugestão de KISLEU FERREIRA (16/12, 15:53):</p>
+                                    <p className="text-sm text-green-800 dark:text-green-200">Adicionar: "SÓCIOS X SÓCIOS Y" na descrição do módulo de gestão de leads e funil de vendas</p>
+                                  </div>
+                                </div>
+                              </div>
+
+                              {/* Resumo - Contrato v2 */}
+                              <div className="bg-background border-2 border-primary/20 shadow-md p-6 rounded-lg">
+                                <h3 className="font-semibold text-lg mb-4 flex items-center gap-2">
+                                  <AlertCircle className="h-5 w-5 text-primary" />
+                                  Resumo das Alterações
+                                </h3>
+                                <div className="grid grid-cols-2 gap-4">
+                                  <div className="space-y-2">
+                                    <p className="text-sm font-medium">Status</p>
+                                    <div className="flex gap-2 flex-wrap">
+                                      <Badge variant="outline" className="bg-orange-50 text-orange-700 border-orange-300">
+                                        {doc.analysisData.pendingChanges} Pendentes
+                                      </Badge>
+                                      <Badge variant="outline" className="bg-gray-50 text-gray-700 border-gray-300">
+                                        0 Aceitas
+                                      </Badge>
+                                      <Badge variant="outline" className="bg-gray-50 text-gray-700 border-gray-300">
+                                        0 Rejeitadas
+                                      </Badge>
+                                    </div>
+                                  </div>
+                                  <div className="space-y-2">
+                                    <p className="text-sm font-medium">Próximos Passos</p>
+                                    <ul className="text-sm space-y-1 text-muted-foreground">
+                                      <li>• Revisar qualificação do representante legal</li>
+                                      <li>• Clarificar propriedade intelectual</li>
+                                      <li>• Remover referência ao SaaS</li>
+                                      <li>• Complementar informações sobre sócios</li>
+                                    </ul>
+                                  </div>
+                                </div>
+                              </div>
+                            </>
+                          )}
                         </div>
                       </div>
 
