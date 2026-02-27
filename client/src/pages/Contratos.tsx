@@ -14,6 +14,9 @@ const mockVersions: Record<string, Version[]> = {
     { id: "v1.1", version: "1.1", date: "04/12/2025", author: "Why Consulting", changes: "Revisão técnica dos anexos", status: "outdated" },
     { id: "v1.0", version: "1.0", date: "01/12/2025", author: "Sistema", changes: "Consolidação inicial dos contratos", status: "outdated" }
   ],
+  "contrato-why-v3": [
+    { id: "v3.0", version: "3.0", date: "27/02/2026", author: "Why Consulting", changes: "Terceira versão - Contrato completo de Desenvolvimento CRM + BackOffice + Plataforma Unique (SaaS). 19 páginas com Anexo I (Cronograma) e Anexo II (Tabela de Valores).", status: "current" }
+  ],
   "contrato-original-why": [
     { id: "v1.0", version: "1.0", date: "28/11/2025", author: "Why Consulting", changes: "Envio original para análise", status: "current" }
   ],
@@ -36,9 +39,9 @@ const documents = [
   {
     id: "contrato-why-v2",
     title: "Contrato Why Consulting v2 + Anexo 1",
-    description: "Última versão do contrato enviada pela Why Consulting para análise e aprovação do Grupo MMB.",
+    description: "Segunda versão do contrato enviada pela Why Consulting. Superado pela versão 3 (CRM + BackOffice).",
     date: "12/12/2025",
-    status: "Em Análise",
+    status: "Superado",
     type: "Contrato",
     path: "/contrato-why-v2-anexo1.pdf",
     hasAnalysis: true,
@@ -80,6 +83,15 @@ const documents = [
         }
       ]
     }
+  },
+  {
+    id: "contrato-why-v3",
+    title: "Contrato Why Consulting v3 - Desenvolvimento CRM",
+    description: "Terceira versão do contrato enviada pela Why Consulting para desenvolvimento do Software CRM + BackOffice + Plataforma Unique (SaaS). Valor total de implantação: R$ 249.700,00 em 1+11 parcelas. Inclui Anexo I (Cronograma) e Anexo II (Tabela de Valores). 19 páginas.",
+    date: "27/02/2026",
+    status: "Em Análise",
+    type: "Contrato",
+    path: "/contrato-why-v3-crm.pdf"
   },
   {
     id: "historico-relacao",
@@ -256,7 +268,16 @@ export default function Contratos() {
                 }`}>
                   {doc.type}
                 </div>
-                <div className="flex items-center text-xs text-green-600 font-medium">
+                <div className={`flex items-center text-xs font-medium ${
+                  doc.status === 'Assinado' ? 'text-green-600' :
+                  doc.status === 'Em Análise' ? 'text-yellow-600' :
+                  doc.status === 'Oficial' ? 'text-blue-600' :
+                  doc.status === 'Superado' ? 'text-gray-400 line-through' :
+                  doc.status === 'Sem Valor' ? 'text-gray-400' :
+                  doc.status === 'Pendente' ? 'text-orange-600' :
+                  doc.status === 'Referência' ? 'text-purple-600' :
+                  'text-green-600'
+                }`}>
                   <CheckCircle className="h-3 w-3 mr-1" />
                   {doc.status}
                 </div>
