@@ -1,23 +1,22 @@
 import { Link, useLocation } from "wouter";
 import { cn } from "@/lib/utils";
-import { 
-  LayoutDashboard, 
-  FileText, 
-  Calendar, 
-  Network, 
-  Settings, 
+import {
+  LayoutDashboard,
+  FileText,
+  Calendar,
+  Network,
   LogOut,
   Menu,
-  X,
   ShieldCheck,
   BookOpen,
   Palette,
-  LogIn
+  LogIn,
 } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { LogoText } from "@/components/Logo";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { useAuth } from "@/contexts/AuthContext";
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
@@ -26,6 +25,17 @@ interface DashboardLayoutProps {
 export default function DashboardLayout({ children }: DashboardLayoutProps) {
   const [location] = useLocation();
   const [isMobileOpen, setIsMobileOpen] = useState(false);
+  const { user, logout } = useAuth();
+
+  const getInitials = (name: string) =>
+    name
+      .split(" ")
+      .map((n) => n[0])
+      .slice(0, 2)
+      .join("")
+      .toUpperCase();
+
+  const userInitials = user ? getInitials(user.name) : "?";
 
   const navigation = [
     { name: "Visão Geral", href: "/", icon: LayoutDashboard },
@@ -87,28 +97,47 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
           ))}
         </div>
 
-        <div className="p-4 border-t border-border">
+        <div className="p-4 border-t border-border space-y-2">
           <div className="flex items-center gap-3 px-3 py-2 text-sm text-muted-foreground">
-            <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold">
-              AM
+            <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-xs shrink-0">
+              {userInitials}
             </div>
-            <div className="flex flex-col">
-              <span className="font-medium text-foreground">Adm. Mutual</span>
-              <span className="text-xs">Gestor do Projeto</span>
+            <div className="flex flex-col min-w-0">
+              <span className="font-medium text-foreground truncate text-xs">
+                {user?.name ?? "Usuário"}
+              </span>
+              <span className="text-xs text-muted-foreground truncate">
+                {user?.email ?? ""}
+              </span>
             </div>
           </div>
+          <button
+            onClick={logout}
+            className="w-full flex items-center gap-3 px-3 py-2 text-sm font-medium text-muted-foreground hover:text-destructive hover:bg-destructive/10 transition-colors rounded-none"
+          >
+            <LogOut className="h-4 w-4" />
+            Sair do Portal
+          </button>
         </div>
       </aside>
 
       {/* Mobile Header */}
       <div className="md:hidden fixed top-0 left-0 right-0 h-16 border-b border-border bg-background z-40 flex items-center justify-between px-4">
         <LogoText />
-        <Sheet open={isMobileOpen} onOpenChange={setIsMobileOpen}>
-          <SheetTrigger asChild>
-            <Button variant="ghost" size="icon">
-              <Menu className="h-6 w-6" />
-            </Button>
-          </SheetTrigger>
+        <div className="flex items-center gap-1">
+          <button
+            onClick={logout}
+            className="p-2 text-muted-foreground hover:text-destructive transition-colors"
+            title="Sair"
+          >
+            <LogOut className="h-5 w-5" />
+          </button>
+          <Sheet open={isMobileOpen} onOpenChange={setIsMobileOpen}>
+            <SheetTrigger asChild>
+              <Button variant="ghost" size="icon">
+                <Menu className="h-6 w-6" />
+              </Button>
+            </SheetTrigger>
           <SheetContent side="left" className="w-64 p-0">
             <div className="h-16 flex items-center px-6 border-b border-border">
               <LogoText />
@@ -118,8 +147,21 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
                 <NavItem key={item.name} item={item} mobile />
               ))}
             </div>
+            <div className="p-4 border-t border-border">
+              <div className="flex items-center gap-3 px-3 py-2 text-sm text-muted-foreground">
+                <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-xs shrink-0">
+                  {userInitials}
+                </div>
+                <div className="flex flex-col min-w-0">
+                  <span className="font-medium text-foreground truncate text-xs">
+                    {user?.name ?? "Usuário"}
+                  </span>
+                </div>
+              </div>
+            </div>
           </SheetContent>
-        </Sheet>
+          </Sheet>
+        </div>
       </div>
 
       {/* Main Content */}
